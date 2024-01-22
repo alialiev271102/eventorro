@@ -21,7 +21,7 @@ import cls from '../AdditionUI.module.less';
 export const SignUp = () => {
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false);
-    const [signUpType, setSignUpType] = useState<'user' | 'host'>(null);
+    const [signUpType, setSignUpType] = useState<'user' | 'host' | null>(null);
 
     const { mediaQueryMaxWidth400px } = useQueries();
 
@@ -39,7 +39,7 @@ export const SignUp = () => {
         if (fieldData.password === fieldData.confirmPassword) {
             await register({
                 ...fieldData,
-                role: signUpType,
+                role: signUpType ? signUpType: 'user',
             });
         } else {
             setError(SignUpFieldsNames.CONFIRM_PASSWORD, { message: 'Пароли не совподают' });
