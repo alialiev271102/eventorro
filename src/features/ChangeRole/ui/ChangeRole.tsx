@@ -59,7 +59,7 @@ export const ChangeRole = () => {
             .finally(() => setUserLoading(false));
     }, [setUserLoading, setUserState])
 
-    const roleHandle = async (fieldData): Promise<void> => {
+    const roleHandle = async (fieldData: any): Promise<void> => {
         await sendRole({
             organization_name: fieldData.organizationName,
             is_host: true,
