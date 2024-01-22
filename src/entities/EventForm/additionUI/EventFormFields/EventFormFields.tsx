@@ -94,8 +94,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 placeholder="Название ивента *"
                 inputSize={inputSize}
                 validationSchema={eventNameSchema}
-                isError={errors[EventFormFieldsNames.NAME] && true}
-                errorMessage={errors[EventFormFieldsNames.NAME]?.message}
+                isError={errors[EventFormFieldsNames.NAME]! && true}
+                errorMessage={errors[EventFormFieldsNames.NAME]?.message as string}
             />
 
             <div>
@@ -129,8 +129,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 placeholder="Название адреса *"
                 inputSize={inputSize}
                 validationSchema={eventLocationSchema}
-                isError={errors[EventFormFieldsNames.LOCATION_NAME] && true}
-                errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message}
+                isError={errors[EventFormFieldsNames.LOCATION_NAME]! && true}
+                errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message as string}
             />
             <HookFormInput
                 className={cls.eventFormInputBlock}
@@ -139,8 +139,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 placeholder="Язык мероприятия *"
                 validationSchema={eventLanguageSchema}
                 inputSize={inputSize}
-                isError={errors[EventFormFieldsNames.EVENT_LANGUAGE] && true}
-                errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message}
+                isError={errors[EventFormFieldsNames.EVENT_LANGUAGE]! && true}
+                errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message as string}
             />
             <HookFormInput
                 className={cls.eventFormInputBlock}
@@ -151,8 +151,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 inputMode="url"
                 type="url"
                 validationSchema={eventLocationSchema}
-                isError={errors[EventFormFieldsNames.LOCATION_LINK] && true}
-                errorMessage={errors[EventFormFieldsNames.LOCATION_LINK]?.message}
+                isError={errors[EventFormFieldsNames.LOCATION_LINK]! && true}
+                errorMessage={errors[EventFormFieldsNames.LOCATION_LINK]?.message as string}
             />
 
             <HookFormInput
@@ -166,8 +166,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 value={youtubeLink}
                 onChange={normalizeYoutube}
                 validationSchema={youtubeLinkSchema}
-                isError={errors[EventFormFieldsNames.VIDEO] && true}
-                errorMessage={errors[EventFormFieldsNames.VIDEO]?.message}
+                isError={errors[EventFormFieldsNames.VIDEO]! && true}
+                errorMessage={errors[EventFormFieldsNames.VIDEO]?.message as string}
             />
             <div className={cls.eventFormPrices}>
                 <HookFormInput
@@ -180,8 +180,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                     inputSize={inputSize}
                     disabled={isFree}
                     validationSchema={isFree ? {} : { required }}
-                    isError={errors[EventFormFieldsNames.PRICE_FROM] && !isFree && true}
-                    errorMessage={errors[EventFormFieldsNames.PRICE_FROM]?.message}
+                    isError={errors[EventFormFieldsNames.PRICE_FROM]! && !isFree && true}
+                    errorMessage={errors[EventFormFieldsNames.PRICE_FROM]?.message as string}
                 />
                 <HookFormInput
                     className={cls.eventFormInputBlock}
@@ -193,8 +193,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                     inputSize={inputSize}
                     disabled={isFree}
                     isRequired={false}
-                    isError={errors[EventFormFieldsNames.PRICE_TO] && true}
-                    errorMessage={errors[EventFormFieldsNames.PRICE_TO]?.message}
+                    isError={errors[EventFormFieldsNames.PRICE_TO]! && true}
+                    errorMessage={errors[EventFormFieldsNames.PRICE_TO]?.message as string}
                 />
             </div>
             <Checkbox onChange={onCheckPrise} checked={isFree}>
@@ -216,8 +216,8 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 inputSize={inputSize}
                 validationSchema={registerHere ? { required } : {}}
                 disabled={!registerHere}
-                isError={errors[EventFormFieldsNames.TICKET_NUMBER] && registerHere && true}
-                errorMessage={errors[EventFormFieldsNames.TICKET_NUMBER]?.message}
+                isError={errors[EventFormFieldsNames.TICKET_NUMBER]! && registerHere && true}
+                errorMessage={errors[EventFormFieldsNames.TICKET_NUMBER]?.message as string}
             />
 
             <Checkbox onChange={onCheckTicket} checked={registerHere}>
