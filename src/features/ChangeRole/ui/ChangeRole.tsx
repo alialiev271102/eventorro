@@ -95,7 +95,7 @@ export const ChangeRole = () => {
                                 inputSize={inputSize}
                                 isError={errors[SignUpFieldsNames.ORGANIZATION_NAME]! && true}
                                 validationSchema={organizationSchema}
-                                errorMessage={errors[SignUpFieldsNames.ORGANIZATION_NAME]?.message}
+                                errorMessage={errors[SignUpFieldsNames.ORGANIZATION_NAME]?.message || undefined}
                             />
                             <Button
                                 style={inputStyles}

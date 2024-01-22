@@ -54,9 +54,9 @@ export const ResetPasswordForm = () => {
                         style={inputStyles}
                         inputSize={inputSize}
                         className={cls.inputBlock}
-                        isError={errors[ResetPasswordFieldNames.NEW_PASSWORD] && true}
+                        isError={errors[ResetPasswordFieldNames.NEW_PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
-                        errorMessage={errors[ResetPasswordFieldNames.NEW_PASSWORD]?.message}
+                        errorMessage={errors[ResetPasswordFieldNames.NEW_PASSWORD]?.message as string}
                         onClickEndIcon={handleChangeNewPasswordVisible}
                         type={newPasswordVisible ? 'text' : 'password'}
                         endIcon={newPasswordVisible ? EyeIcon : EyeSlashIcon}
@@ -67,9 +67,9 @@ export const ResetPasswordForm = () => {
                         style={inputStyles}
                         inputSize={inputSize}
                         className={cls.inputBlock}
-                        isError={errors[ResetPasswordFieldNames.CONFIRM_NEW_PASSWORD] && true}
+                        isError={errors[ResetPasswordFieldNames.CONFIRM_NEW_PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
-                        errorMessage={errors[ResetPasswordFieldNames.CONFIRM_NEW_PASSWORD]?.message}
+                        errorMessage={errors[ResetPasswordFieldNames.CONFIRM_NEW_PASSWORD]?.message as string}
                         onClickEndIcon={handleChangeConfirmNewPasswordVisible}
                         type={confirmNewPasswordVisible ? 'text' : 'password'}
                         endIcon={confirmNewPasswordVisible ? EyeIcon : EyeSlashIcon}

@@ -53,9 +53,9 @@ export const RecoverPassword = () => {
                         style={inputStyles}
                         inputMode="numeric"
                         inputSize={inputSize}
-                        isError={errors[RecoverPasswordFieldNames.ACTIVATION_CODE] && true}
+                        isError={errors[RecoverPasswordFieldNames.ACTIVATION_CODE]! && true}
                         validationSchema={activationCodeForForgetPasswordSchema}
-                        errorMessage={errors[RecoverPasswordFieldNames.ACTIVATION_CODE]?.message}
+                        errorMessage={errors[RecoverPasswordFieldNames.ACTIVATION_CODE]?.message as string}
                         autoComplete="off"
                     />
                     <HookFormInput
@@ -63,12 +63,12 @@ export const RecoverPassword = () => {
                         placeholder="Ведите новый пароль"
                         style={inputStyles}
                         inputSize={inputSize}
-                        isError={errors[RecoverPasswordFieldNames.NEW_PASSWORD] && true}
+                        isError={errors[RecoverPasswordFieldNames.NEW_PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
                         onClickEndIcon={handleChangeNewPasswordVisible}
                         type={newPasswordVisible ? 'text' : 'password'}
                         endIcon={newPasswordVisible ? EyeIcon : EyeSlashIcon}
-                        errorMessage={errors[RecoverPasswordFieldNames.NEW_PASSWORD]?.message}
+                        errorMessage={errors[RecoverPasswordFieldNames.NEW_PASSWORD]?.message as string}
                     />
                     <HookFormInput
                         name={RecoverPasswordFieldNames.CONFIRM_NEW_PASSWORD}
@@ -78,9 +78,9 @@ export const RecoverPassword = () => {
                         onClickEndIcon={handleChangeConfirmNewPasswordVisible}
                         type={confirmNewPasswordVisible ? 'text' : 'password'}
                         endIcon={confirmNewPasswordVisible ? EyeIcon : EyeSlashIcon}
-                        isError={errors[RecoverPasswordFieldNames.CONFIRM_NEW_PASSWORD] && true}
+                        isError={errors[RecoverPasswordFieldNames.CONFIRM_NEW_PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
-                        errorMessage={errors[RecoverPasswordFieldNames.CONFIRM_NEW_PASSWORD]?.message}
+                        errorMessage={errors[RecoverPasswordFieldNames.CONFIRM_NEW_PASSWORD]?.message as string}
                     />
                     <Button
                         style={inputStyles}

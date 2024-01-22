@@ -36,9 +36,9 @@ export const RecoverPasswordEmail = () => {
                         placeholder="Ведите почту"
                         style={inputStyles}
                         inputSize={inputSize}
-                        isError={errors[RecoverPasswordEmailFieldNames.EMAIL] && true}
+                        isError={errors[RecoverPasswordEmailFieldNames.EMAIL]! && true}
                         validationSchema={emailSchema}
-                        errorMessage={errors[RecoverPasswordEmailFieldNames.EMAIL]?.message}
+                        errorMessage={errors[RecoverPasswordEmailFieldNames.EMAIL]?.message as string}
                     />
                     <Button
                         style={inputStyles}

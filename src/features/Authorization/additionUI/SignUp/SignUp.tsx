@@ -74,7 +74,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.NAME]! && true}
                         validationSchema={nicknameSchema}
-                        errorMessage={errors[SignUpFieldsNames.NAME]?.message}
+                        errorMessage={errors[SignUpFieldsNames.NAME]?.message as string}
                     />
                     <HookFormInput
                         placeholder="Фамилия *"
@@ -84,7 +84,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.LAST_NAME]! && true}
                         validationSchema={nicknameSchema}
-                        errorMessage={errors[SignUpFieldsNames.LAST_NAME]?.message}
+                        errorMessage={errors[SignUpFieldsNames.LAST_NAME]?.message as string}
                     />
 
                     <HookFormInput
@@ -96,7 +96,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.EMAIL]! && true}
                         validationSchema={emailSchema}
-                        errorMessage={errors[SignUpFieldsNames.EMAIL]?.message}
+                        errorMessage={errors[SignUpFieldsNames.EMAIL]?.message as string}
                     />
                     <HookFormInput
                         placeholder="Неомер Телефона * (+996XXXXXXXXX)"
@@ -106,7 +106,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.PHONE]! && true}
                         validationSchema={phoneSchema}
-                        errorMessage={errors[SignUpFieldsNames.PHONE]?.message}
+                        errorMessage={errors[SignUpFieldsNames.PHONE]?.message as string}
                     />
                     {signUpType === 'host' && (
                         <HookFormInput
@@ -117,7 +117,7 @@ export const SignUp = () => {
                             inputSize={inputSize}
                             isError={errors[SignUpFieldsNames.ORGANIZATION_NAME]! && true}
                             validationSchema={organizationSchema}
-                            errorMessage={errors[SignUpFieldsNames.ORGANIZATION_NAME]?.message}
+                            errorMessage={errors[SignUpFieldsNames.ORGANIZATION_NAME]?.message as string}
                         />
                     )}
                     <HookFormInput
@@ -131,7 +131,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
-                        errorMessage={errors[SignUpFieldsNames.PASSWORD]?.message}
+                        errorMessage={errors[SignUpFieldsNames.PASSWORD]?.message as string}
                     />
                     <HookFormInput
                         placeholder="Подтвердите пароль *"
@@ -144,7 +144,7 @@ export const SignUp = () => {
                         inputSize={inputSize}
                         isError={errors[SignUpFieldsNames.CONFIRM_PASSWORD]! && true}
                         validationSchema={signUpPasswordSchema}
-                        errorMessage={errors[SignUpFieldsNames.CONFIRM_PASSWORD]?.message}
+                        errorMessage={errors[SignUpFieldsNames.CONFIRM_PASSWORD]?.message as string}
                     />
                     <Button
                         style={inputStyles}
