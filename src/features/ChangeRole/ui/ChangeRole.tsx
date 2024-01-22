@@ -43,7 +43,7 @@ export const ChangeRole = () => {
 
     const {handleSubmit, formState: {errors}} = changeRoleForm;
 
-    const sendRole = useCallback(async (data) => {
+    const sendRole = useCallback(async (data: any) => {
         await axiosInstanceWithBearer.put('/accounts/profile/', data)
             .then((response) => {
                 setUserState(userModelSerializer(response.data));
