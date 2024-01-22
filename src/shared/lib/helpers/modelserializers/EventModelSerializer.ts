@@ -10,6 +10,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
         audience,
         author,
         categories,
+        event_language: eventLanguage,
         event_dates: eventDates,
         event_card_image: eventCardImage,
         images,
@@ -54,6 +55,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
             priceFrom,
             locationName,
             ticketsNumber,
+            eventLanguage,
         },
         eventProperties: {
             categories,

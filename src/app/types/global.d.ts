@@ -32,6 +32,7 @@ export interface EventFromBackend {
     readonly price_to:number | null;
     readonly video:string;
     readonly description: string;
+    readonly event_language: string;
     readonly tickets_number: number | null;
     readonly location_link:string;
     readonly location_name: string;
@@ -79,6 +80,7 @@ export interface EventInfo {
     readonly locationLink:string;
     readonly locationName: string;
     readonly author: string;
+    readonly eventLanguage: string;
     readonly eventDates: EventDates[];
     readonly ticketUsers: ticketUser[];
 }

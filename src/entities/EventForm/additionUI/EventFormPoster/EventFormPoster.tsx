@@ -77,9 +77,9 @@ export const EventFormPoster: FC<EventFormBannerProps> = (props) => {
             ) : (
                 <div className={cls.defaultPosterNotAnyImage}>
                     <PhotoIcon className={cls.photoIcon} />
-                    <Typography className={cls.posterText} bold>Нажмите чтобы поменять <br></br> постер</Typography>
+                    <Typography className={cls.posterText} bold>Нажмите чтобы поменять <br/> постер</Typography>
                     <br />
-                    <Typography className={cls.posterText}>Минимальное разрешение <br></br> (450х550)</Typography>
+                    <Typography className={cls.posterText}>Минимальное разрешение <br/> (450х550)</Typography>
                 </div>
             )}
             <input

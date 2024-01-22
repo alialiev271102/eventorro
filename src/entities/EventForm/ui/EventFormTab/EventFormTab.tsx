@@ -217,7 +217,7 @@ export const EventFormTab = () => {
                     name={EventFormFieldsNames.LOCATION_NAME}
                     placeholder="Название адреса *"
                     inputSize={inputSize}
-                    validationSchema={eventLanguageSchema}
+                    validationSchema={eventLocationSchema}
                     isError={errors[EventFormFieldsNames.LOCATION_NAME] && true}
                     errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message}
                 />
@@ -226,6 +226,7 @@ export const EventFormTab = () => {
                     inputClassName={cls.eventFormInput}
                     name={EventFormFieldsNames.EVENT_LANGUAGE}
                     placeholder="Язык мероприятия *"
+                    validationSchema={eventLanguageSchema}
                     inputSize={inputSize}
                     isError={errors[EventFormFieldsNames.EVENT_LANGUAGE] && true}
                     errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message}

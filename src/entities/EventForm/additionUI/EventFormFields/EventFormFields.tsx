@@ -11,7 +11,7 @@ import { ValueType } from 'rsuite/Checkbox';
 import { HookFormInput } from '@/shared/components/HookFormInput/ui/HookFormInput';
 import { Typography } from '@/shared/components/Typography';
 import {
-    eventDescriptionSchema,
+    eventDescriptionSchema, eventLanguageSchema,
     eventLocationSchema,
     eventNameSchema, required,
     youtubeLinkSchema,
@@ -132,7 +132,16 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 isError={errors[EventFormFieldsNames.LOCATION_NAME] && true}
                 errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message}
             />
-
+            <HookFormInput
+                className={cls.eventFormInputBlock}
+                inputClassName={cls.eventFormInput}
+                name={EventFormFieldsNames.EVENT_LANGUAGE}
+                placeholder="Язык мероприятия *"
+                validationSchema={eventLanguageSchema}
+                inputSize={inputSize}
+                isError={errors[EventFormFieldsNames.EVENT_LANGUAGE] && true}
+                errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message}
+            />
             <HookFormInput
                 className={cls.eventFormInputBlock}
                 inputClassName={cls.eventFormInput}

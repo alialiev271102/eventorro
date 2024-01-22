@@ -66,13 +66,14 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
 
     const { updateEvent, deleteEvent } = eventFunctions;
 
-    const eventFormFields = useForm<EventFormFieldsType>({
+    const eventFormFields = useForm<any>({
         mode: 'onBlur',
         defaultValues: {
             name: eventInfo.eventName,
             locationLink: eventInfo.locationLink,
             locationName: eventInfo.locationName,
             typeOfLocation: eventProperties.typeOfLocation,
+            eventLanguage: eventInfo.eventLanguage,
             video: eventContent.video,
             audience: eventProperties.audience,
             ageLimits: eventProperties.ageLimits,
@@ -114,6 +115,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
             type_of_location: localTypeOfLocation,
             description: localDescription,
             location_name: data.locationName,
+            event_language: data.eventLanguage,
             location_link: data.locationLink,
             // eslint-disable-next-line no-nested-ternary
             price_to: isFree ? null : data.priceTo ? data.priceTo : null,
