@@ -81,7 +81,7 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
     const [youtubeLink, setYouTubeLink] = useState();
 
 
-    const normalizeYoutube = (e) => {
+    const normalizeYoutube = (e: any) => {
         setYouTubeLink(e.target.value.split('?')[0]);
     }
 
