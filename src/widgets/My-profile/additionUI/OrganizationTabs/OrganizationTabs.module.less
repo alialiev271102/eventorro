@@ -1,0 +1,31 @@
+.organizationTabs {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.organizationTab {
+  width: 25%;
+  text-align: center;
+  height: 40px;
+  font-size: var(--body-3);
+  font-weight: 600;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 700px){
+    font-size: var(--body-4);
+    height: 35px;
+  }
+
+  @media screen and (max-width: 580px){
+    font-size: var(--body-5);
+    font-weight: 400;
+  }
+}
+
+.organizationIcon {
+  width: 20px;
+  height: 20px;
+}

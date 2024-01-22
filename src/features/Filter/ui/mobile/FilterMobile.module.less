@@ -1,0 +1,57 @@
+.filterMobile {
+  width: 300px;
+  position: fixed;
+  left: 0;
+  top: 4.9em;
+  z-index: 6;
+}
+
+.showHiddenButton {
+  margin-top: 15px;
+}
+
+.funnelIcon{
+  width: 18px;
+  height: 18px;
+  margin-top: 5px;
+}
+
+.filters{
+  background-color: var(--white-color);
+  width: 100%;
+  border-radius: 4px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: height .3s, opacity .3s;
+}
+
+.filtersShow {
+  opacity: 0.93;
+  height: 450px;
+
+}
+.bigBlock {
+  background-color: transparent;
+  position: absolute;
+  width: 5000px;
+  height: 5000px;
+}
+
+.filterBlock {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filterInput {
+  width: 100%;
+}

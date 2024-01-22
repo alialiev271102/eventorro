@@ -1,0 +1,46 @@
+.information {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 900px){
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 500px){
+    flex-direction: column;
+  }
+}
+
+.descriptionBlock {
+  width: calc(97% - 300px);
+
+  @media screen and (max-width: 1200px){
+    width: calc(98% - 300px);
+  }
+
+  @media screen and (max-width: 900px){
+    width: 100%;
+  }
+}
+
+.informationBlock {
+  width: 300px;
+
+  @media screen and (max-width: 900px){
+    width: 100%;
+  }
+}
+
+.informationPanelIcon{
+  width: 25px;
+  height: 25px;
+  color: #EF8A29;
+  margin-top: -2px;
+
+  @media screen and (max-width: 600px) {
+    width: 20px;
+    height: 20px;
+  }
+}
