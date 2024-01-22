@@ -33,10 +33,10 @@ export const FileUploader: FC<FileUploaderProps> = (props) => {
                     img.onload = function () {
                         if (minHeight !== undefined && minWidth !== undefined) {
                             // eslint-disable-next-line
-                            if (this.width >= minWidth && this.height >= minHeight) {
+                            if (img.width >= minWidth && img.height >= minHeight) {
                                 if (maxHeight !== undefined && maxWidth !== undefined) {
                                     // eslint-disable-next-line react/no-this-in-sfc
-                                    if (this.width <= maxWidth && this.height <= maxHeight) {
+                                    if (img.width <= maxWidth && img.height <= maxHeight) {
                                         setLocalImageLink(URL.createObjectURL(file));
                                         setFile(file);
                                         return true;

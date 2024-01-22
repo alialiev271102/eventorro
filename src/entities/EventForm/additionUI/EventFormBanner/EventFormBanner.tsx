@@ -33,7 +33,7 @@ export const EventFormBanner: FC<EventFormBannerProps> = (props) => {
                     // eslint-disable-next-line func-names
                     img.onload = function () {
                         // eslint-disable-next-line react/no-this-in-sfc
-                        if (this.width >= 900 && this.height >= 510) {
+                        if (img.width >= 900 && img.height >= 510) {
                             setUploadingFile(URL.createObjectURL(file));
                             setImage(file);
                             return true;

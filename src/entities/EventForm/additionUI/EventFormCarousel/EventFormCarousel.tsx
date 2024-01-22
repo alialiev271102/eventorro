@@ -36,7 +36,7 @@ export const EventFormCarousel: FC<EventFormCarouselProps> = (props) => {
                             // eslint-disable-next-line func-names
                             img.onload = function () {
                                 // eslint-disable-next-line react/no-this-in-sfc
-                                if (this.width >= 900 && this.height >= 510) {
+                                if (img.width >= 900 && img.height >= 510) {
                                     const newImage: carouselImage = {
                                         file,
                                         name: file.name,
