@@ -31,7 +31,8 @@ export interface OrganizationInformationProps {
 
 export interface OrganizationTabsProps {
     tabs: tabs;
-    setTabs: Dispatch<SetStateAction<tabs>>
+    setTabs: Dispatch<SetStateAction<tabs>>;
+    user: userInformation
 }
 
 export interface OrganizationEventsProps {
@@ -42,4 +43,5 @@ export interface OrganizationEventsProps {
 
 export interface UserTicketsProps {
     userTickets: ticketUser[];
+    events: Event[];
 }

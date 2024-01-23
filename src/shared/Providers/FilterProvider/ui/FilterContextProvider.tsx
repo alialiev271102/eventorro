@@ -26,7 +26,7 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
     const [age, setAge] = useState<string>('');
     const [audience, setAudience] = useState<string>('');
     const [category, setCategory] = useState<string>('');
-    const [date, setDate] = useState<string[]>([]);
+    const [date, setDate] = useState<string[]>(['','']);
     const [location, setLocation] = useState<string>('');
 
     const AuthorizationLoadingContextProps: FilterContextProps = useMemo(() => ({

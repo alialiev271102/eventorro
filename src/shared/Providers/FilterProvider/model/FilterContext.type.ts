@@ -28,7 +28,7 @@ export interface FilterContextProps {
         setAudience: Dispatch<SetStateAction<string>>;
         category: string;
         setCategory: Dispatch<SetStateAction<string>>;
-        date: [Date, Date];
+        date: string[];
         setDate: Dispatch<SetStateAction<string[]>>;
         location: string;
         setLocation: Dispatch<SetStateAction<string>>;

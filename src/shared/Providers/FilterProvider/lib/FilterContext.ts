@@ -12,7 +12,7 @@ export const FilterContext = createContext<FilterContextProps>({
         setAudience: () => {},
         category: '',
         setCategory: () => {},
-        date: [],
+        date: ['',''],
         setDate: () => {},
         location: '',
         setLocation: () => {},
