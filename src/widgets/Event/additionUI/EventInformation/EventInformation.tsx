@@ -163,7 +163,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                         >
                             Забронировать asds
                             <TicketIcon width={18} height={18} />
-                        </Button>): <div></div>
+                        </Button>): <div> </div>
                     }
                     
                     {userState !== null?

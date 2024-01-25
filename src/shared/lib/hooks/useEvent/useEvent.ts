@@ -80,7 +80,6 @@ export const useEvent = (): UseEventReturn => {
         setEventRegistering(true);
         await axiosInstanceWithBearer.get<'Сохранено'| 'Удалено'>(`/events/${eventId}/get_ticket/`)
             .then(async (response) => {
-                console.log(response.data)
                 if (response.data === 'Сохранено') {
                     setIsRegistered(true);
                     toast.success('Бронь прошла успешно', {

@@ -110,4 +110,5 @@ export const phoneSchema: RegisterOptions = {
     minLength: minLength(10),
     maxLength: maxLength(13),
     pattern: patternPhone,
+    required,
 };

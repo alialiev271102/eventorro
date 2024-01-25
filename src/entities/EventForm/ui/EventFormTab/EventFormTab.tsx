@@ -119,7 +119,7 @@ export const EventFormTab = () => {
             location_link: data.locationLink,
             event_language: data.eventLanguage,
             // eslint-disable-next-line no-nested-ternary
-            price_to: isFree ? null : data.priceTo ? data.priceTo : null,
+            price_to: isFree ? null : data.priceTo,
             price_from: isFree ? null : data.priceFrom,
             tickets_number: !registerHere ? null : data.ticketsNumber,
             age_limits: localAge,
@@ -182,8 +182,8 @@ export const EventFormTab = () => {
                     placeholder="Название ивента *"
                     inputSize={inputSize}
                     validationSchema={eventNameSchema}
-                    isError={errors[EventFormFieldsNames.NAME] && true}
-                    errorMessage={errors[EventFormFieldsNames.NAME]?.message}
+                    isError={errors[EventFormFieldsNames.NAME]! && true}
+                    errorMessage={errors[EventFormFieldsNames.NAME]?.message as string}
                 />
 
                 <div>
@@ -218,8 +218,8 @@ export const EventFormTab = () => {
                     placeholder="Название адреса *"
                     inputSize={inputSize}
                     validationSchema={eventLocationSchema}
-                    isError={errors[EventFormFieldsNames.LOCATION_NAME] && true}
-                    errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message}
+                    isError={errors[EventFormFieldsNames.LOCATION_NAME]! && true}
+                    errorMessage={errors[EventFormFieldsNames.LOCATION_NAME]?.message as string}
                 />
                 <HookFormInput
                     className={cls.eventFormInputBlock}
@@ -228,8 +228,8 @@ export const EventFormTab = () => {
                     placeholder="Язык мероприятия *"
                     validationSchema={eventLanguageSchema}
                     inputSize={inputSize}
-                    isError={errors[EventFormFieldsNames.EVENT_LANGUAGE] && true}
-                    errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message}
+                    isError={errors[EventFormFieldsNames.EVENT_LANGUAGE]! && true}
+                    errorMessage={errors[EventFormFieldsNames.EVENT_LANGUAGE]?.message as string}
                 />
                 <HookFormInput
                     className={cls.eventFormInputBlock}
@@ -240,8 +240,8 @@ export const EventFormTab = () => {
                     inputMode="url"
                     type="url"
                     validationSchema={eventLocationSchema}
-                    isError={errors[EventFormFieldsNames.LOCATION_LINK] && true}
-                    errorMessage={errors[EventFormFieldsNames.LOCATION_LINK]?.message}
+                    isError={errors[EventFormFieldsNames.LOCATION_LINK]! && true}
+                    errorMessage={errors[EventFormFieldsNames.LOCATION_LINK]?.message as string}
                 />
 
                 <HookFormInput
@@ -253,8 +253,8 @@ export const EventFormTab = () => {
                     type="url"
                     inputSize={inputSize}
                     validationSchema={youtubeLinkSchema}
-                    isError={errors[EventFormFieldsNames.VIDEO] && true}
-                    errorMessage={errors[EventFormFieldsNames.VIDEO]?.message}
+                    isError={errors[EventFormFieldsNames.VIDEO]! && true}
+                    errorMessage={errors[EventFormFieldsNames.VIDEO]?.message as string}
                 />
                 <div className={cls.eventFormPrices}>
                     <HookFormInput
@@ -266,9 +266,9 @@ export const EventFormTab = () => {
                         type="number"
                         inputSize={inputSize}
                         disabled={isFree}
-                        validationSchema={isFree ? {} : { required }}
-                        isError={errors[EventFormFieldsNames.PRICE_FROM] && !isFree && true}
-                        errorMessage={errors[EventFormFieldsNames.PRICE_FROM]?.message}
+                        isRequired={!isFree}
+                        isError={errors[EventFormFieldsNames.PRICE_FROM]! && !isFree && true}
+                        errorMessage={errors[EventFormFieldsNames.PRICE_FROM]?.message as string}
                     />
                     <HookFormInput
                         className={cls.eventFormInputBlock}
@@ -279,9 +279,9 @@ export const EventFormTab = () => {
                         type="number"
                         inputSize={inputSize}
                         disabled={isFree}
-                        isRequired={false}
-                        isError={errors[EventFormFieldsNames.PRICE_TO] && true}
-                        errorMessage={errors[EventFormFieldsNames.PRICE_TO]?.message}
+                        isRequired={!isFree}
+                        isError={errors[EventFormFieldsNames.PRICE_TO]! && true}
+                        errorMessage={errors[EventFormFieldsNames.PRICE_TO]?.message as string}
                     />
                 </div>
                 <Checkbox onChange={onCheckPrise} checked={isFree}>
@@ -313,8 +313,8 @@ export const EventFormTab = () => {
                     inputSize={inputSize}
                     validationSchema={registerHere ? { required } : {}}
                     disabled={!registerHere}
-                    isError={errors[EventFormFieldsNames.TICKET_NUMBER] && registerHere && true}
-                    errorMessage={errors[EventFormFieldsNames.TICKET_NUMBER]?.message}
+                    isError={errors[EventFormFieldsNames.TICKET_NUMBER]! && registerHere && true}
+                    errorMessage={errors[EventFormFieldsNames.TICKET_NUMBER]?.message as string}
                 />
 
                 <div className={cls.dates}>

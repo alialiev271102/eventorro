@@ -48,3 +48,31 @@
     width: 90%;
   }
 }
+
+.carouselContainer {
+  position: relative;
+  width: 100%; /* Установите желаемую ширину */
+}
+
+.leftArrow, .leftArrow:hover, .leftArrow:active, .leftArrow:focus {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  left: 0;
+  z-index: 10;
+}
+
+.rightArrow, .rightArrow:hover, .rightArrow:active, .rightArrow:focus{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  right: 0;
+  z-index: 10;
+}
