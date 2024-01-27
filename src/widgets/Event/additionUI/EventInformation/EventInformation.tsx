@@ -1,11 +1,11 @@
 import {
     BookmarkIcon,
-    CalendarIcon, HashtagIcon, IdentificationIcon, MapIcon, MapPinIcon, TicketIcon, UserGroupIcon,
+    CalendarIcon, HashtagIcon, IdentificationIcon, LanguageIcon, MapIcon, MapPinIcon, TicketIcon, UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import {
     FC, useCallback, useEffect, useState,
 } from 'react';
-import { Button, Panel, Stack } from 'rsuite';
+import {Button, Dropdown, Panel, Stack} from 'rsuite';
 
 import { SomIcon } from '@/shared/assets/SomIcon';
 import { Typography } from '@/shared/components/Typography';
@@ -37,7 +37,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
         typeOfLocation, ageLimits, audience, categories,
     } = eventProperties;
     const {
-        priceTo, priceFrom, description, eventName, eventDates, locationName, eventId, ticketUsers, ticketsNumber,
+        eventLanguage, priceTo, priceFrom, description, eventName, eventDates, locationName, eventId, ticketUsers, ticketsNumber,
     } = eventInfo;
 
     const isBooked = userState?.userEvents.bookmarkedEvents
@@ -123,6 +123,10 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                         <Typography variant="body-3">{ageLimits}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
+                        <LanguageIcon className={cls.informationPanelIcon} />
+                        <Typography variant="body-3">{eventLanguage}</Typography>
+                    </Stack>
+                    <Stack alignItems="center" spacing={5}>
                         <UserGroupIcon className={cls.informationPanelIcon} />
                         <Typography variant="body-3">{audience}</Typography>
                     </Stack>
@@ -154,6 +158,43 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                             {isRegistered ? 'Отменить бронь' : 'Забронировать'}
                             <TicketIcon width={18} height={18} />
                     </Button>
+                        // <Dropdown
+                        // title={isRegistered ? 'Отменить бронь' : 'Забронировать'}
+                        // className={cls.informationPanelButton}
+                        // appearance="primary"
+                        // icon={<TicketIcon width={18} height={18} />}
+                        // >
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         1
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         2
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         3
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         4
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         5
+                        //     </Dropdown.Item>
+                        // </Dropdown>
                     :
                     <Button
                             block

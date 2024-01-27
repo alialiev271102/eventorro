@@ -24,7 +24,7 @@ export const UserTickets: FC<UserTicketsProps> = (props) => {
     mergedTickets = userTickets.map(ticket => {
         for (let i = 0; i < events.length; i++) {
             if (ticket.event === events[i].eventInfo.eventName) {
-                return {...ticket, id: events[i].eventInfo.eventId}
+                return {...ticket, id: events[i].eventInfo.eventId, orgAuthor: events[i].eventInfo.author}
             }
         }
         return ticket;
@@ -39,10 +39,10 @@ export const UserTickets: FC<UserTicketsProps> = (props) => {
                             <TicketIcon height={25} width={25} />
                             <div className={cls.eventTextBlock} >
                                 <Typography bold className={cls.eventName}>
-                                    {userTicket.event}
+                                   {userTicket.event}
                                 </Typography>
                                 <Typography className={cls.eventEmail}>
-                                    {userTicket.id}
+                                    {userTicket.orgAuthor}
                                 </Typography>
                             </div>
                         </Stack>
