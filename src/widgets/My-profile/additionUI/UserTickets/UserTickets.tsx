@@ -20,7 +20,7 @@ export const UserTickets: FC<UserTicketsProps> = (props) => {
         );
     }
 
-    let mergedTickets;
+    let mergedTickets:any;
     mergedTickets = userTickets.map(ticket => {
         for (let i = 0; i < events.length; i++) {
             if (ticket.event === events[i].eventInfo.eventName) {
@@ -32,7 +32,7 @@ export const UserTickets: FC<UserTicketsProps> = (props) => {
 
     return (
         <List bordered hover>
-            {mergedTickets.map((userTicket) => (
+            {mergedTickets.map((userTicket: any) => (
                 <List.Item>
                     <Link href={`/events/${userTicket.id}`}>
                         <Stack alignItems="center" spacing={10} className={cls.eventElement}>
