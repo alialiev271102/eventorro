@@ -84,12 +84,13 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                     width={mediaQueryMaxWidth360px ? 100 : 120}
                     height={mediaQueryMaxWidth360px ? 140 : 160}
                     errorImage={imageNotFound.src}
+                    onClick={onEventClickHandler}
                 />
                 {userState && !withDrawer && (
                     <Button
                         disabled={eventBookmarking}
                         onClick={onSaveHandler}
-                        color="red"
+                        color="green"
                         appearance="primary"
                         size="xs"
                         className={cls.bookmark}

@@ -99,7 +99,7 @@ export const SignUp = () => {
                         errorMessage={errors[SignUpFieldsNames.EMAIL]?.message as string}
                     />
                     <HookFormInput
-                        placeholder="Неомер Телефона * (+996XXXXXXXXX)"
+                        placeholder="Телефон: +996 (XXX) XXX XXX *"
                         name={SignUpFieldsNames.PHONE}
                         style={inputStyles}
                         startIcon={PhoneIcon}

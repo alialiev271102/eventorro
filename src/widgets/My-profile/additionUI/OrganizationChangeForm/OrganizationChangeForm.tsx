@@ -186,7 +186,7 @@ export const OrganizationChangeForm = () => {
                                 errorMessage={errors.organizationName?.message!}
                             /> : " "}
                             <HookFormInput
-                                placeholder="Номер телефона (+996XXXXXXXXX)"
+                                placeholder="Номер телефона: +996 (XXX) XXX XXX"
                                 name="phone"
                                 style={inputStyles}
                                 startIcon={PhoneIcon}

@@ -118,8 +118,8 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
             event_language: data.eventLanguage,
             location_link: data.locationLink,
             // eslint-disable-next-line no-nested-ternary
-            price_to: isFree ? null : data.priceTo ? data.priceTo : null,
-            price_from: isFree ? null : data.priceFrom,
+            price_to: isFree ? null : (data.priceTo! < 0? data.priceTo! * -1: data.priceTo!),
+            price_from: isFree ? null : (data.priceFrom! < 0? data.priceFrom! * -1: data.priceFrom!),
             tickets_number: !registerHere ? null : data.ticketsNumber,
             age_limits: localAge,
             categories: localCategories,

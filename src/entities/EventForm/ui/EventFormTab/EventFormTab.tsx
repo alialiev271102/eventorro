@@ -92,9 +92,10 @@ export const EventFormTab = () => {
 
     const onCreateNewEvent = (data: EventFormFieldsType) => {
         if (poster === null || banner === null) {
-            toast.error('Пожалуйста добавьте постре и баннер', {
+            toast.error('Пожалуйста добавьте постер и баннер', {
                 autoClose: 1500
             });
+            return;
         }
 
         if (localCategories.length === 0
@@ -119,8 +120,8 @@ export const EventFormTab = () => {
             location_link: data.locationLink,
             event_language: data.eventLanguage,
             // eslint-disable-next-line no-nested-ternary
-            price_to: isFree ? null : data.priceTo,
-            price_from: isFree ? null : data.priceFrom,
+            price_to: isFree ? null : (data.priceTo! < 0? data.priceTo! * -1: data.priceTo!),
+            price_from: isFree ? null : (data.priceFrom! < 0? data.priceFrom! * -1: data.priceFrom!),
             tickets_number: !registerHere ? null : data.ticketsNumber,
             age_limits: localAge,
             event_dates: [date.toISOString()],
@@ -152,29 +153,29 @@ export const EventFormTab = () => {
     return (
         // eslint-disable-next-line react/jsx-props-no-spreading
         <FormProvider {...eventForm}>
-            <div className={cls.banner}>
-                <EventFormBanner
-                    className={cls.banner}
-                    alt="Uploading image"
-                    image={banner}
-                    setImage={setBanner}
-                />
-            </div>
-            <div className={cls.posterAndCarousel}>
-                <EventFormPoster
-                    alt="Uploading image"
-                    image={poster}
-                    className={cls.poster}
-                    setImage={setPoster}
-                />
-                <EventFormCarousel
-                    className={cls.carousel}
-                    carouselImages={carouselImages}
-                    setCarouselImages={setCarouselImages}
-                    helperText
-                />
-            </div>
             <form className={cls.eventForm} onSubmit={handleSubmit(onCreateNewEvent)}>
+                <div className={cls.banner}>
+                    <EventFormBanner
+                        className={cls.banner}
+                        alt="Uploading image"
+                        image={banner}
+                        setImage={setBanner}
+                    />
+                </div>
+                <div className={cls.posterAndCarousel}>
+                    <EventFormPoster
+                        alt="Uploading image"
+                        image={poster}
+                        className={cls.poster}
+                        setImage={setPoster}
+                    />
+                    <EventFormCarousel
+                        className={cls.carousel}
+                        carouselImages={carouselImages}
+                        setCarouselImages={setCarouselImages}
+                        helperText
+                    />
+                </div>
                 <HookFormInput
                     className={cls.eventFormInputBlock}
                     inputClassName={cls.eventFormInput}
@@ -279,7 +280,7 @@ export const EventFormTab = () => {
                         type="number"
                         inputSize={inputSize}
                         disabled={isFree}
-                        isRequired={!isFree}
+                        isRequired={false}
                         isError={errors[EventFormFieldsNames.PRICE_TO]! && true}
                         errorMessage={errors[EventFormFieldsNames.PRICE_TO]?.message as string}
                     />

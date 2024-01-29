@@ -34,8 +34,10 @@ export const OrganizationInformation: FC<OrganizationInformationProps> = ({ info
                     className={cls.noteBlock}
                     collapsible={mediaQueryMaxWidth1200px}
                 >
-                    Для создания события просим вас зарегистрироваться как организатор.
-                    Для этого при регистрации выберите статус "Организатор"
+                    Для создания события вам нужно быть Организатором.
+                    <br/>Для этого: <br/>
+                    1) Вы можете зарегистрироваться как организатор в настройках профиля <br/>(правый верхний угол),
+                    <br/>2) Вы можете создать новый аккаунт в качестве организатора.
                 </Panel>}
             <Panel
                 className={cls.informationBlock}

@@ -51,17 +51,15 @@ export const FilterMobile = () => {
 
     return (
         <div className={cls.filterMobile}>
-            <div className={cls.bigBlock} onClick={() => setShow(false)}> </div>
+            <div className={!show? cls.noBigBlock :cls.bigBlock} onClick={() => setShow(false)}> </div>
             <Button
                     block
                     appearance="primary"
                     className={cls.showHiddenButton}
                     onClick={() => setShow((prevState) => !prevState)}
                 >
-                    <Stack justifyContent="center" spacing={5} alignItems="center">
                         {show ? 'Скрыть фильтр' : 'Показать фильтр'}
                         <FunnelIcon width={20} height={20} className={cls.funnelIcon}/>
-                    </Stack>
                 </Button>
             <div className={clsx(cls.filters, {[cls.filtersShow]: show})}>
                 <div className={cls.filterBlock}>
