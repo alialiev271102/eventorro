@@ -22,6 +22,8 @@ export interface useFilterReturn {
     },
     filterStates: {
         age: string;
+        city: string;
+        citys: filterValue[];
         ages: filterValue[];
         date: string[];
         audience: string;
@@ -35,6 +37,7 @@ export interface useFilterReturn {
         events: Event[];
     },
     filterSetStates: {
+        setCity: Dispatch<SetStateAction<string>>
         setLocation: Dispatch<SetStateAction<string>>;
         setAge: Dispatch<SetStateAction<string>>;
         setDate: Dispatch<SetStateAction<string[]>>;

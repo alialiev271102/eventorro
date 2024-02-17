@@ -37,6 +37,8 @@ export interface localStates {
     setLocalCategories: Dispatch<SetStateAction<string[]>>;
     localTypeOfLocation: string;
     setLocalTypeOfLocation: Dispatch<SetStateAction<string>>;
+    localCity: string;
+    setLocalCity: Dispatch<SetStateAction<string>>;
 }
 
 export interface EventFormDrawerProps {
@@ -59,6 +61,7 @@ export type eventDateTime = {
 export interface EventFormFields {
     banner: FileList | string;
     name: string;
+    city: string;
     description: string;
     ticketsNumber: number | null;
     priceFrom: number | null;
@@ -117,6 +120,7 @@ export enum EventFormFieldsNames {
     TICKET_NUMBER = 'ticketsNumber',
     PRICE_FROM = 'priceFrom',
     PRICE_TO = 'priceTo',
+    CITY = 'citys',
     CATEGORIES = 'categories',
     TYPE_OF_LOCATION = 'typeOfLocation',
     EVENT_DATES = 'eventDates',

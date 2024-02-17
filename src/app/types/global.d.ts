@@ -7,6 +7,7 @@ type EventDate = {date_time: string};
 export interface ticketUserFromBackend {
     id: number;
     event: string;
+    count: number;
     phone: string;
     name: string;
     last_name: string;
@@ -17,6 +18,7 @@ export interface ticketUserFromBackend {
 export interface ticketUser {
     id: number;
     event: string;
+    count: number;
     phone: string;
     name: string;
     lastName: string;
@@ -27,6 +29,8 @@ export interface ticketUser {
 export interface EventFromBackend {
     readonly id: number
     readonly name: string;
+    readonly isModerate: boolean
+    readonly city: string;
     readonly poster:string;
     readonly price_from:number | null;
     readonly price_to:number | null;
@@ -72,6 +76,7 @@ interface EventDates {
 
 export interface EventInfo {
     readonly eventId: number
+    readonly isModerate: boolean
     readonly eventName: string;
     readonly priceFrom: number | null;
     readonly priceTo: number | null;
@@ -88,6 +93,7 @@ export interface EventInfo {
 export interface EventProperties {
     readonly audience: string;
     readonly ageLimits: string;
+    readonly city: string;
     readonly typeOfLocation: string;
     readonly categories: EventCategory[];
 }

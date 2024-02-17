@@ -30,6 +30,8 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
     const [openAlert, setOpenAlert] = useState(false);
     const editEventStates = useEditEvent();
     const {
+        localCity,
+        setLocalCity,
         localDescription,
         setLocalDescription,
         localAge,
@@ -61,7 +63,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
     } = eventInfo;
 
     const {
-        ageLimits, audience, typeOfLocation, categories,
+        ageLimits, audience, typeOfLocation, categories, city
     } = eventProperties;
 
     const { updateEvent, deleteEvent } = eventFunctions;
@@ -70,6 +72,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
         mode: 'onBlur',
         defaultValues: {
             name: eventInfo.eventName,
+            city: eventProperties.city,
             locationLink: eventInfo.locationLink,
             locationName: eventInfo.locationName,
             typeOfLocation: eventProperties.typeOfLocation,
@@ -100,6 +103,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
             || localAudience === null
             || localAge === null
             || localTypeOfLocation === null
+            || localCity === null
         ) {
             toast.error('Заполните все данные', {
                 autoClose: 1500
@@ -110,6 +114,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
         // @ts-ignore
         const updatedEvent: Partial<CreateEventProps> = {
             name: data.name,
+            city: data.city,
             video: data.video ? data.video : '',
             audience: localAudience,
             type_of_location: localTypeOfLocation,
@@ -147,6 +152,7 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
         setLocalAudience(audience);
         setLocalAge(ageLimits);
         setLocalTypeOfLocation(typeOfLocation);
+        setLocalCity(city)
 
         // eslint-disable-next-line array-callback-return
         categories.map((category) => {

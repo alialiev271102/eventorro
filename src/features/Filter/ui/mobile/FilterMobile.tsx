@@ -15,7 +15,7 @@ export const FilterMobile = () => {
     const {filterSetStates, filterStates} = useFilter();
     const {mediaQueryMaxWidth768px} = useQueries();
     const {
-        categories, ages, audiences, locations,
+        categories, ages, audiences, citys,
         category, age, audience, location, filterLoading,
     } = filterStates;
     const {
@@ -68,7 +68,7 @@ export const FilterMobile = () => {
                         <DateRangePicker
                             block
                             showOneCalendar
-                            placeholder="Выберите ДАТУ И ВРЕМЯ НАЧАЛА мероприятия"
+                            placeholder="Выберите дату"
                             disabled={filterLoading}
                             editable={false}
                             disabledDate={DateRangePicker.beforeToday && DateRangePicker.beforeToday()}
@@ -85,19 +85,19 @@ export const FilterMobile = () => {
                             disabled={filterLoading}
                             onChange={setLocation}
                             value={location}
-                            data={locations}
+                            data={citys}
                             placeholder={filterLoading ? 'Загрузка...' : 'Выберите локацию'}
                         />
                     </div>
                     <div className={cls.filter}>
-                        <Typography bold variant="body-3">Категория:</Typography>
+                        <Typography bold variant="body-3">Тип мероприятия:</Typography>
                         <InputPicker
                             block
                             disabled={filterLoading}
                             onChange={setCategory}
                             value={category}
                             data={categories}
-                            placeholder={filterLoading ? 'Загрузка...' : 'Выберите категории'}
+                            placeholder={filterLoading ? 'Загрузка...' : 'Выберите тип'}
                         />
                     </div>
                     <div className={cls.filter}>

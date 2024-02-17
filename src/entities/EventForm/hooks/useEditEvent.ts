@@ -4,6 +4,7 @@ import { carouselImage } from '../model/EventForm.type';
 
 export const useEditEvent = () => {
     const [localDescription, setLocalDescription] = useState<string>('');
+    const [localCity, setLocalCity] = useState<string>('');
     const [localAge, setLocalAge] = useState<string>('');
     const [localAudience, setLocalAudience] = useState<string>('');
     const [localTypeOfLocation, setLocalTypeOfLocation] = useState<string>('');
@@ -15,6 +16,8 @@ export const useEditEvent = () => {
     const [carouselImages, setCarouselImages] = useState<carouselImage[]>([]);
 
     return useMemo(() => ({
+        localCity,
+        setLocalCity,
         localDescription,
         setLocalDescription,
         localAge,
@@ -39,6 +42,7 @@ export const useEditEvent = () => {
         banner,
         carouselImages,
         isFree,
+        localCity,
         localAge,
         localAudience,
         localCategories,

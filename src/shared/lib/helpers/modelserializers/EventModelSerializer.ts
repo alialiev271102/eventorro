@@ -10,6 +10,8 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
         audience,
         author,
         categories,
+        city,
+        isModerate,
         event_language: eventLanguage,
         event_dates: eventDates,
         event_card_image: eventCardImage,
@@ -29,6 +31,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
     const mappedTicketUser: ticketUserInterface[] = ticketUsers?.map((ticketUserMapped: ticketUserFromBackend) => ({
         id: ticketUserMapped.id,
         event: ticketUserMapped.event,
+        count: ticketUserMapped.count,
         phone: ticketUserMapped.phone,
         name: ticketUserMapped.name,
         lastName: ticketUserMapped.last_name,
@@ -45,6 +48,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
         },
         eventInfo: {
             author,
+            isModerate,
             ticketUsers: mappedTicketUser,
             description,
             eventId: id,
@@ -59,6 +63,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
         },
         eventProperties: {
             categories,
+            city,
             audience,
             ageLimits,
             typeOfLocation,

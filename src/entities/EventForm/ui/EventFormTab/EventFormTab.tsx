@@ -32,9 +32,9 @@ import cls from './EventFormTab.module.less';
 export const EventFormTab = () => {
     const [localDescription, setLocalDescription] = useState<string>('');
     const [localAge, setLocalAge] = useState<string>('');
-    const [language, setLanguage] = useState<string>('');
     const [localAudience, setLocalAudience] = useState<string>('');
     const [localTypeOfLocation, setLocalTypeOfLocation] = useState<string>('');
+    const [city, setCity] = useState<string>('');
     const [localCategories, setLocalCategories] = useState<string[]>([]);
     const [isFree, setIsFree] = useState<boolean>(false);
     const [registerHere, setRegisterHere] = useState<boolean>(false);
@@ -49,7 +49,7 @@ export const EventFormTab = () => {
     const { filterStates } = useFilter();
 
     const {
-        categories, locations, audiences, ages,
+        categories, citys, audiences, ages, locations
     } = filterStates;
     const eventForm = useForm<EventFormFields>({ mode: 'onBlur' });
     const {
@@ -340,6 +340,16 @@ export const EventFormTab = () => {
                     data={refactoredCategories}
                     searchable={false}
                     placeholder="Категории"
+                />
+                <InputPicker
+                    value={city}
+                    onChange={setCity}
+                    block
+                    size={inputSize}
+                    data={citys}
+                    searchable={false}
+                    placement="auto"
+                    placeholder="Город"
                 />
                 <InputPicker
                     value={localTypeOfLocation}

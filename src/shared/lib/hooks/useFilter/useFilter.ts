@@ -22,9 +22,11 @@ export const useFilter = (): useFilterReturn => {
 
     const {
         events,
+        city,
         setEvents,
         location,
         setLocation,
+        setCity,
         age,
         setAge,
         audience,
@@ -44,6 +46,8 @@ export const useFilter = (): useFilterReturn => {
         audiences,
         locations,
         ages,
+        citys,
+        setCitys,
         setAges,
         setCategories,
         setLocations,
@@ -53,11 +57,12 @@ export const useFilter = (): useFilterReturn => {
     const clearFilterState = useCallback((): void => {
         setLocation('');
         setCategory('');
+        setCity('');
         setAge('');
         setAudience('');
         setDate([]);
         setEvents([]);
-    }, [setAge, setAudience, setCategory, setDate, setEvents, setLocation]);
+    }, [setAge, setAudience, setCategory, setDate, setEvents, setLocation, setCity]);
 
     const filteringEvents = useCallback(() => {
         const params: axiosParams = {};
@@ -68,6 +73,10 @@ export const useFilter = (): useFilterReturn => {
 
         if (category !== '') {
             params.category = category;
+        }
+
+        if (city !== '') {
+            params.city = city
         }
 
         if (age !== '') {
@@ -121,6 +130,16 @@ export const useFilter = (): useFilterReturn => {
                 setLocations(mutatedArray);
             })
             .catch((error) => { axiosErrorHandler(error); });
+        await axiosInstanceWithoutBearer.get<filterValueFromBack[]>('/extra/city/')
+            .then((response) => {
+                const mutatedArray: filterValue[] = response.data.map((filter) => ({
+                    id: filter.id,
+                    label: filter.name,
+                    value: filter.name,
+                }));
+                setCitys(mutatedArray);
+            })
+            .catch((error) => { axiosErrorHandler(error); });
         await axiosInstanceWithoutBearer.get<filterValueFromBack[]>('/extra/age_limits/')
             .then((response) => {
                 const mutatedArray: filterValue[] = response.data.map((filter) => ({
@@ -156,6 +175,8 @@ export const useFilter = (): useFilterReturn => {
         filterStates: {
             age,
             ages,
+            city,
+            citys,
             date,
             audience,
             audiences,
@@ -169,6 +190,7 @@ export const useFilter = (): useFilterReturn => {
         },
         filterSetStates: {
             setLocation,
+            setCity,
             setAge,
             setDate,
             setCategory,

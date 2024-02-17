@@ -7,6 +7,8 @@ export const FilterContext = createContext<FilterContextProps>({
         events: [],
         setEvents: () => {},
         age: '',
+        city: '',
+        setCity: () => {},
         setAge: () => {},
         audience: '',
         setAudience: () => {},
@@ -18,6 +20,8 @@ export const FilterContext = createContext<FilterContextProps>({
         setLocation: () => {},
     },
     filterValues: {
+        citys: [],
+        setCitys: () => {},
         categories: [],
         setCategories: () => {},
         ages: [],

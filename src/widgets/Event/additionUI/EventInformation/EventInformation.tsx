@@ -1,5 +1,5 @@
 import {
-    BookmarkIcon,
+    BookmarkIcon, BuildingOfficeIcon,
     CalendarIcon, HashtagIcon, IdentificationIcon, LanguageIcon, MapIcon, MapPinIcon, TicketIcon, UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import {
@@ -34,10 +34,10 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
     const { toggleEventSaveState, toggleRegisterToEvent } = eventFunctions;
     const { eventBookmarking, eventRegistering } = eventStates;
     const {
-        typeOfLocation, ageLimits, audience, categories,
+        typeOfLocation, ageLimits, audience, categories,city
     } = eventProperties;
     const {
-        eventLanguage, priceTo, priceFrom, description, eventName, eventDates, locationName, eventId, ticketUsers, ticketsNumber,
+        eventLanguage,locationLink, priceTo, priceFrom, description, eventName, eventDates, locationName, eventId, ticketUsers, ticketsNumber,
     } = eventInfo;
 
     const isBooked = userState?.userEvents.bookmarkedEvents
@@ -98,6 +98,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                         {description}
                     </Typography>
                 )}
+                <a href={locationLink}>Посмотреть на карте</a>
             </div>
 
             <Panel bordered className={cls.informationPanel}>
@@ -127,6 +128,10 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                         <Typography variant="body-3">{eventLanguage}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
+                        <BuildingOfficeIcon className={cls.informationPanelIcon}/>
+                        <Typography variant="body-3">{city}</Typography>
+                    </Stack>
+                    <Stack alignItems="center" spacing={5}>
                         <UserGroupIcon className={cls.informationPanelIcon} />
                         <Typography variant="body-3">{audience}</Typography>
                     </Stack>
@@ -149,53 +154,53 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                     {(dates > currentDate)?
                     ((userState !== null)?
                     ((ticketsNumber)?
-                    //     <Button
-                    //         block
-                    //         appearance="primary"
-                    //         className={cls.informationPanelButton}
-                    //         onClick={onRegisterHandler}
-                    //         loading={eventRegistering || userState === null}
-                    //     >
-                    //         {isRegistered ? 'Отменить бронь' : 'Забронировать'}
-                    //         <TicketIcon width={18} height={18} />
-                    // </Button>
-                        <Dropdown
-                        title={isRegistered ? 'Отменить бронь' : 'Забронировать'}
-                        className={cls.informationPanelButton}
-                        appearance="primary"
-                        icon={<TicketIcon width={18} height={18} />}
+                        <Button
+                            block
+                            appearance="primary"
+                            className={cls.informationPanelButton}
+                            onClick={onRegisterHandler}
+                            loading={eventRegistering || userState === null}
                         >
-                            <Dropdown.Item
-                                onClick={onRegisterHandler}
-                                className={cls.informationPanelButton}
-                            >
-                                1
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={onRegisterHandler}
-                                className={cls.informationPanelButton}
-                            >
-                                2
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={onRegisterHandler}
-                                className={cls.informationPanelButton}
-                            >
-                                3
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={onRegisterHandler}
-                                className={cls.informationPanelButton}
-                            >
-                                4
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                onClick={onRegisterHandler}
-                                className={cls.informationPanelButton}
-                            >
-                                5
-                            </Dropdown.Item>
-                        </Dropdown>
+                            {isRegistered ? 'Отменить бронь' : 'Забронировать'}
+                            <TicketIcon width={18} height={18} />
+                    </Button>
+                        // <Dropdown
+                        // title={isRegistered ? 'Отменить бронь' : 'Забронировать'}
+                        // className={cls.informationPanelButton}
+                        // appearance="primary"
+                        // icon={<TicketIcon width={18} height={18} />}
+                        // >
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         1
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         2
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         3
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         4
+                        //     </Dropdown.Item>
+                        //     <Dropdown.Item
+                        //         onClick={onRegisterHandler}
+                        //         className={cls.informationPanelButton}
+                        //     >
+                        //         5
+                        //     </Dropdown.Item>
+                        // </Dropdown>
                         : "")
 
                     :

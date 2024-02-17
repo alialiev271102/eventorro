@@ -33,7 +33,7 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
         localCategories, localDescription, setLocalCategories,
         localTypeOfLocation, localAudience, setLocalDescription,
         setLocalTypeOfLocation, setLocalAudience, setLocalAge, localAge,
-        setRegisterHere, registerHere, isFree, setIsFree,
+        setRegisterHere, registerHere, isFree, setIsFree, localCity, setLocalCity
     } = localStates;
 
     const { register } = useForm<EventFormFieldsType>({ mode: 'onBlur' });
@@ -44,7 +44,7 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
     const { getFilterValues } = filterFunctions;
 
     const {
-        categories, ages, audiences, locations,
+        categories, ages, audiences, citys, locations
     } = filterStates;
 
     const inputSize = mediaQueryMaxWidth600px ? 'md' : 'lg';
@@ -239,6 +239,16 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 data={refactoredCategories}
                 searchable={false}
                 placeholder="Категории"
+            />
+            <InputPicker
+                value={localCity}
+                onChange={setLocalCity}
+                block
+                size={inputSize}
+                data={citys}
+                searchable={false}
+                placement="auto"
+                placeholder="Город"
             />
             <InputPicker
                 value={localTypeOfLocation}

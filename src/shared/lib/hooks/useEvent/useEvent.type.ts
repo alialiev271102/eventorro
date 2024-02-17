@@ -11,6 +11,7 @@ export interface CreateEventProps{
     poster: File | null;
     event_card_image: File | null;
     name: string;
+    city: string;
     description: string;
     tickets_number: number | null;
     price_from: number | null;

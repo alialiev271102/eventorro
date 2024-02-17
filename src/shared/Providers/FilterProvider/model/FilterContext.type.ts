@@ -10,6 +10,8 @@ export interface filterValue {
 
 export interface FilterContextProps {
     filterValues: {
+        citys: filterValue[];
+        setCitys: Dispatch<SetStateAction<filterValue[]>>
         categories: filterValue[];
         setCategories: Dispatch<SetStateAction<filterValue[]>>
         ages: filterValue[];
@@ -22,6 +24,8 @@ export interface FilterContextProps {
     filterStates: {
         events: Event[];
         setEvents: Dispatch<SetStateAction<Event[]>>;
+        city: string;
+        setCity: Dispatch<SetStateAction<string>>
         age: string;
         setAge: Dispatch<SetStateAction<string>>;
         audience: string;

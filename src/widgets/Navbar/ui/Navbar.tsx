@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Header } from 'rsuite';
+import {Footer, Header} from 'rsuite';
 
 import { Layout } from '@/shared/components/Layout';
 

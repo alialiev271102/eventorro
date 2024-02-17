@@ -79,14 +79,14 @@ export const FilterDesktop = () => {
                     />
                 </Stack>
                 <Stack direction="column" alignItems="flex-start" spacing={5}>
-                    <Typography bold variant="body-3">Категория:</Typography>
+                    <Typography bold variant="body-3">Тип мероприятия:</Typography>
                     <InputPicker
                         style={{ width: 228 }}
                         onChange={setCategory}
                         value={category}
                         data={categories}
                         disabled={filterLoading}
-                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите категории'}
+                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите тип'}
                     />
                 </Stack>
                 <Stack direction="column" alignItems="flex-start" spacing={5}>

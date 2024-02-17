@@ -21,6 +21,7 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
     const [ages, setAges] = useState<filterValue[]>([]);
     const [locations, setLocations] = useState<filterValue[]>([]);
     const [audiences, setAudiences] = useState<filterValue[]>([]);
+    const [citys, setCitys] = useState<filterValue[]>([]);
 
     const [events, setEvents] = useState<Event[]>([]);
     const [age, setAge] = useState<string>('');
@@ -28,6 +29,7 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
     const [category, setCategory] = useState<string>('');
     const [date, setDate] = useState<string[]>(['','']);
     const [location, setLocation] = useState<string>('');
+    const [city, setCity] = useState<string>('');
 
     const AuthorizationLoadingContextProps: FilterContextProps = useMemo(() => ({
         eventLoading,
@@ -47,6 +49,8 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
             setDate,
             location,
             setLocation,
+            city,
+            setCity,
         },
         filterValues: {
             categories,
@@ -57,6 +61,8 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
             ages,
             locations,
             audiences,
+            citys,
+            setCitys
         },
     }), [
         age,
@@ -70,6 +76,7 @@ export const FilterContextProvider: FC<AuthorizationContextProviderProps> = (pro
         filterLoading,
         location,
         locations,
+        city,citys
     ]);
 
     return (

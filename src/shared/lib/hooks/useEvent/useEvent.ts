@@ -96,6 +96,30 @@ export const useEvent = (): UseEventReturn => {
             .finally(() => setEventRegistering(false));
     }, []);
 
+    const toggleRegisterToEventWithCount = useCallback(async (
+        eventId: number,
+        count: number,
+        setIsRegistered: Dispatch<SetStateAction<boolean>>,
+    ): Promise<void> => {
+        setEventRegistering(true);
+        await axiosInstanceWithBearer.post<'Сохранено'| 'Удалено'>(`/events/${eventId}/get_ticket/`,{'count': count})
+            .then(async (response) => {
+                if (response.data === 'Сохранено') {
+                    setIsRegistered(true);
+                    toast.success('Бронь прошла успешно', {
+                        autoClose: 1500
+                    });
+                } else {
+                    setIsRegistered(false);
+                    toast.success('Вы успешно отменили бронь', {
+                        autoClose: 1500
+                    });
+                }
+            })
+            .catch((error) => axiosErrorHandler(error))
+            .finally(() => setEventRegistering(false));
+    }, []);
+
     const updateEvent = useCallback(async (id: number, data: Partial<CreateEventProps>): Promise<void> => {
         setUpdatingEvent(true);
         await axiosInstanceWithBearer.put(`/events/${id}/update_event/`, data)

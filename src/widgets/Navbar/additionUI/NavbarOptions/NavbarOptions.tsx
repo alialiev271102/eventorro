@@ -1,5 +1,5 @@
 import {
-    ArrowLeftOnRectangleIcon,
+    ArrowLeftOnRectangleIcon, BuildingOfficeIcon,
     Cog6ToothIcon,
     IdentificationIcon,
     LockClosedIcon,
@@ -7,9 +7,9 @@ import {
     PlusIcon,
 } from '@heroicons/react/24/outline';
 import {useRouter} from 'next/router';
-import {useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {toast} from 'react-toastify';
-import {Button, Dropdown, Stack} from 'rsuite';
+import {Button, Dropdown, InputPicker, Stack} from 'rsuite';
 
 import {Authorization} from '@/features/Authorization';
 import {RecoverPasswordModal} from '@/features/PasswordFeatures/RecoverPassword';
@@ -19,12 +19,23 @@ import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 
 import cls from '../additionUI.module.less';
 import {ChangeRole} from "@/features/ChangeRole";
+import {useEvent} from "@/shared/lib/hooks/useEvent";
+import {useFilter} from "@/shared/lib/hooks/useFilter/useFilter";
 
 export const NavbarOptions = () => {
     const {mediaQueryMaxWidth768px} = useQueries();
+    const { filterStates, filterSetStates } = useFilter();
+    const {events} = filterStates;
+
+    const {
+        citys, city, filterLoading,
+    } = filterStates;
+    const {setCity} = filterSetStates;
 
     const {authorizationSetStates, authorizationStates, authorizationFunction} = useAuthorization();
     const {push, pathname} = useRouter();
+
+
 
     const {
         setAuthorizationModalState,
@@ -103,6 +114,14 @@ export const NavbarOptions = () => {
                     >
                         {userState?.userInformation.isHost ? "Создать событие" : userState?.userInformation.isHost === false ? "Регистрация как Организатор" : "Создать событие"}
                     </Dropdown.Item>
+                    <InputPicker
+                        style={{ width: 228 }}
+                        onChange={setCity}
+                        value={city}
+                        data={citys}
+                        disabled={filterLoading}
+                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите локацию'}
+                    />
                 </Dropdown>
                 <Authorization/>
                 <ChangeRole/>
@@ -115,6 +134,32 @@ export const NavbarOptions = () => {
     return (
         <div>
             <Stack spacing={5}>
+                {/*<Dropdown*/}
+                {/*    className={cls.dropDownItem}*/}
+                {/*    appearance="primary"*/}
+                {/*    icon={<BuildingOfficeIcon width={18} height={18}/>}*/}
+                {/*    title={"Выберите город"}*/}
+                {/*    size="md"*/}
+                {/*    placement="bottomEnd"*/}
+                {/*>*/}
+                {/*    {events.map(city => {*/}
+                {/*        return(*/}
+                {/*            <Dropdown.Item*/}
+                {/*                className={cls.dropDownItem}*/}
+                {/*            >*/}
+                {/*                {city.eventProperties.city}*/}
+                {/*            </Dropdown.Item>*/}
+                {/*        )*/}
+                {/*    })}*/}
+                {/*</Dropdown>*/}
+                <InputPicker
+                    style={{ width: 228 }}
+                    onChange={setCity}
+                    value={city}
+                    data={citys}
+                    disabled={filterLoading}
+                    placeholder={filterLoading ? 'Загрузка...' : 'Выберите локацию'}
+                />
                 {
                     pathname === '/' && (
                         <Button
