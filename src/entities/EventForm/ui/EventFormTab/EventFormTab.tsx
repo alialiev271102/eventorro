@@ -103,6 +103,7 @@ export const EventFormTab = () => {
             || localAge === null
             || localTypeOfLocation === null
             || date === null
+            || city === null
         ) {
             toast.error('Заполните все данные', {
                 autoClose: 1500
@@ -112,7 +113,9 @@ export const EventFormTab = () => {
 
         const createdEvent: Partial<CreateEventProps> = {
             name: data.name,
+            city: city,
             video: data.video ? data.video : '',
+            isModerate: false,
             audience: localAudience,
             type_of_location: localTypeOfLocation,
             description: localDescription,
@@ -143,6 +146,7 @@ export const EventFormTab = () => {
         setPoster(null);
         setIsFree(false);
         setRegisterHere(false);
+        setCity('');
         setLocalDescription('');
         setLocalAudience('');
         setLocalAge('');

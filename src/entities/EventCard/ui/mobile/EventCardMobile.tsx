@@ -1,44 +1,43 @@
-import {
-    CalendarIcon, HashtagIcon, MapPinIcon,
-} from '@heroicons/react/24/outline';
-import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
-import { useRouter } from 'next/router';
-import { FC, useCallback, useState } from 'react';
-import { Button, Stack } from 'rsuite';
+import {CalendarIcon, HashtagIcon, MapPinIcon,} from '@heroicons/react/24/outline';
+import {format} from 'date-fns';
+import {ru} from 'date-fns/locale';
+import {useRouter} from 'next/router';
+import {FC, useCallback, useState} from 'react';
+import {Button, Stack} from 'rsuite';
 
-import { EventEditDrawer } from '@/entities/EventForm';
-import { SomIcon } from '@/shared/assets/SomIcon';
-import { ProgressiveImageLoader } from '@/shared/components/ProgressiveImageLoader';
-import { Typography } from '@/shared/components/Typography';
-import { useAuthorization } from '@/shared/lib/hooks/useAuthorization/useAuthorization';
-import { useEvent } from '@/shared/lib/hooks/useEvent';
-import { useQueries } from '@/shared/lib/hooks/useMediaQuery';
+import {EventEditDrawer} from '@/entities/EventForm';
+import {SomIcon} from '@/shared/assets/SomIcon';
+import {ProgressiveImageLoader} from '@/shared/components/ProgressiveImageLoader';
+import {Typography} from '@/shared/components/Typography';
+import {useAuthorization} from '@/shared/lib/hooks/useAuthorization/useAuthorization';
+import {useEvent} from '@/shared/lib/hooks/useEvent';
+import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 
-import { EventCardProps } from '../../model/EventCard.type';
+import {EventCardProps} from '../../model/EventCard.type';
 import imageNotFound from '../assets/imageNotFound.jpeg';
 import cls from './EventCardMobile.module.less';
 
 export const EventCardMobile: FC<EventCardProps> = (props) => {
-    const { event, withDrawer } = props;
-    const { mediaQueryMaxWidth360px } = useQueries();
-    const { authorizationStates } = useAuthorization();
-    const { eventFunctions, eventStates } = useEvent();
-    const { userState } = authorizationStates;
-    const { eventBookmarking } = eventStates;
-    const { toggleEventSaveState } = eventFunctions;
+    const {event, withDrawer} = props;
+    const {mediaQueryMaxWidth360px} = useQueries();
+    const {authorizationStates} = useAuthorization();
+    const {eventFunctions, eventStates} = useEvent();
+    const {userState} = authorizationStates;
+    const {isModerate} = event.eventInfo
+    const {eventBookmarking} = eventStates;
+    const {toggleEventSaveState} = eventFunctions;
 
     const [isEventCardDrawerOpen, setIsEventCardDrawerOpen] = useState<boolean>(false);
 
-    const { eventInfo, eventProperties, eventContent } = event;
+    const {eventInfo, eventProperties, eventContent} = event;
 
     const {
         priceTo, priceFrom, eventName, eventDates, locationName, eventId,
     } = eventInfo;
 
-    const { categories } = eventProperties;
+    const {categories} = eventProperties;
 
-    const { push } = useRouter();
+    const {push} = useRouter();
 
     const isBooked = userState?.userEvents.bookmarkedEvents
         .some((eventFromBackend) => eventFromBackend.id === eventId);
@@ -47,7 +46,8 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
     const eventPrice: string = (function () {
         if (priceFrom === null) {
             return 'Вход свободный';
-        } if (priceTo === null) {
+        }
+        if (priceTo === null) {
             return `${priceFrom}c`;
         }
         return `${priceFrom}-${priceTo}c`;
@@ -61,11 +61,11 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
         },
     );
 
-    const onEventClickHandler = useCallback(async ():Promise<void> => {
+    const onEventClickHandler = useCallback(async (): Promise<void> => {
         await push(`/events/${eventId}`);
     }, [eventId, push]);
 
-    const onSaveHandler = useCallback(async ():Promise<void> => {
+    const onSaveHandler = useCallback(async (): Promise<void> => {
         await toggleEventSaveState(eventId);
     }, [eventId, toggleEventSaveState]);
 
@@ -137,7 +137,7 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                     className={cls.additionInfo}
                 >
                     <Stack alignItems="center" spacing={10}>
-                        <SomIcon className={cls.somIcon} />
+                        <SomIcon className={cls.somIcon}/>
                         <Typography
                             className={cls.additionInfoValue}
                             bold
@@ -147,7 +147,7 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                         </Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={10} justifyContent="center">
-                        <CalendarIcon width={16} height={16} />
+                        <CalendarIcon width={16} height={16}/>
                         <Typography
                             className={cls.additionInfoValue}
                             bold
@@ -157,7 +157,7 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                         </Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={10} justifyContent="center">
-                        <MapPinIcon width={16} height={16} />
+                        <MapPinIcon width={16} height={16}/>
                         <Typography
                             className={cls.additionInfoValue}
                             bold
@@ -171,7 +171,7 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                         spacing={10}
                         justifyContent="center"
                     >
-                        <HashtagIcon width={16} height={16} />
+                        <HashtagIcon width={16} height={16}/>
                         <Typography
                             className={cls.additionInfoValue}
                             bold
@@ -180,7 +180,8 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                             {categories.map((category, index) => {
                                 if (categories.length === 1) {
                                     return category.name;
-                                } if (index === 2) {
+                                }
+                                if (index === 2) {
                                     return category.name;
                                 }
                                 return `${category.name}, `;

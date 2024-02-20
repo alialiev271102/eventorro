@@ -9,6 +9,7 @@ export interface AuthorData {
 
 export interface CreateEventProps{
     poster: File | null;
+    isModerate: boolean;
     event_card_image: File | null;
     name: string;
     city: string;
@@ -51,6 +52,7 @@ export interface UseEventReturn {
         updateEvent: (id: number, data: Partial<CreateEventProps>) => Promise<void>;
         getEventById: (eventId: number) => Promise<void>;
         toggleRegisterToEvent: (eventId: number, setIsRegistered: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+        toggleRegisterToEventWithCount: (id: number,count: number,setIsRegistered: Dispatch<SetStateAction<boolean>>) => Promise<void>;
         toggleEventSaveState: (id: number) => Promise<void>;
         getEventAuthorDateByEmail: (email: string) => Promise<void>;
     };

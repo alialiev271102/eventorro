@@ -179,6 +179,7 @@ export const useEvent = (): UseEventReturn => {
             getEventById,
             toggleEventSaveState,
             toggleRegisterToEvent,
+            toggleRegisterToEventWithCount,
             deleteEvent,
         },
 

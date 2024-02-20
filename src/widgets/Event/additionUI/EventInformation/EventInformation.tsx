@@ -1,61 +1,82 @@
 import {
-    BookmarkIcon, BuildingOfficeIcon,
-    CalendarIcon, HashtagIcon, IdentificationIcon, LanguageIcon, MapIcon, MapPinIcon, TicketIcon, UserGroupIcon,
+    BookmarkIcon,
+    BuildingOfficeIcon,
+    CalendarIcon,
+    HashtagIcon,
+    IdentificationIcon,
+    LanguageIcon,
+    MapIcon,
+    MapPinIcon,
+    TicketIcon,
+    UserGroupIcon,
 } from '@heroicons/react/24/outline';
-import {
-    FC, useCallback, useEffect, useState,
-} from 'react';
+import {FC, useCallback, useEffect, useState,} from 'react';
 import {Button, Dropdown, Panel, Stack} from 'rsuite';
 
-import { SomIcon } from '@/shared/assets/SomIcon';
-import { Typography } from '@/shared/components/Typography';
-import { ACCESS_TOKEN_KEY } from '@/shared/lib/constants/localStorageKeys';
-import { useAuthorization } from '@/shared/lib/hooks/useAuthorization/useAuthorization';
-import { useDataNormalization } from '@/shared/lib/hooks/useDataNormalization';
-import { useEvent } from '@/shared/lib/hooks/useEvent';
-import { useQueries } from '@/shared/lib/hooks/useMediaQuery';
+import {SomIcon} from '@/shared/assets/SomIcon';
+import {Typography} from '@/shared/components/Typography';
+import {ACCESS_TOKEN_KEY} from '@/shared/lib/constants/localStorageKeys';
+import {useAuthorization} from '@/shared/lib/hooks/useAuthorization/useAuthorization';
+import {useDataNormalization} from '@/shared/lib/hooks/useDataNormalization';
+import {useEvent} from '@/shared/lib/hooks/useEvent';
+import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 
-import { EventInformationProps } from '../../model/Event.type';
+import {EventInformationProps} from '../../model/Event.type';
 import cls from './EventInformation.module.less';
 
 export const EventInformation: FC<EventInformationProps> = (props) => {
-    
-    const { eventInfo, eventProperties } = props;
+
+    const {eventInfo, eventProperties} = props;
 
     const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
-    const { mediaQueryMaxWidth900px, mediaQueryMinWidth600px } = useQueries();
-    const { eventFunctions, eventStates } = useEvent();
-    const { authorizationSetStates,authorizationStates, authorizationFunction } = useAuthorization();
-    const { eventPrice, eventCategories, eventDate } = useDataNormalization();
-    const { setAuthorizationModalState } = authorizationSetStates;
-    const { userState } = authorizationStates;
-    const { getUserData } = authorizationFunction;
-    const { toggleEventSaveState, toggleRegisterToEvent } = eventFunctions;
-    const { eventBookmarking, eventRegistering } = eventStates;
+    const {mediaQueryMaxWidth900px, mediaQueryMinWidth600px} = useQueries();
+    const {eventFunctions, eventStates} = useEvent();
+    const {authorizationSetStates, authorizationStates, authorizationFunction} = useAuthorization();
+    const {eventPrice, eventCategories, eventDate} = useDataNormalization();
+    const {setAuthorizationModalState} = authorizationSetStates;
+    const {userState} = authorizationStates;
+    const {getUserData} = authorizationFunction;
+    const {toggleEventSaveState, toggleRegisterToEvent, toggleRegisterToEventWithCount} = eventFunctions;
+    const {eventBookmarking, eventRegistering} = eventStates;
     const {
-        typeOfLocation, ageLimits, audience, categories,city
+        typeOfLocation, ageLimits, audience, categories, city
     } = eventProperties;
     const {
-        eventLanguage,locationLink, priceTo, priceFrom, description, eventName, eventDates, locationName, eventId, ticketUsers, ticketsNumber,
+        eventLanguage,
+        locationLink,
+        priceTo,
+        priceFrom,
+        description,
+        eventName,
+        eventDates,
+        locationName,
+        eventId,
+        ticketUsers,
+        ticketsNumber,
     } = eventInfo;
 
     const isBooked = userState?.userEvents.bookmarkedEvents
         .some((eventFromBackend) => eventFromBackend.id === eventId);
 
-    const onSaveHandler = useCallback(async ():Promise<void> => {
+    const onSaveHandler = useCallback(async (): Promise<void> => {
         await toggleEventSaveState(eventId);
     }, [eventId, toggleEventSaveState]);
 
-    const onRegisterHandler = useCallback(async ():Promise<void> => {
-        await toggleRegisterToEvent(eventId, setIsRegistered);
-    }, [eventId, toggleRegisterToEvent]);
+    const onRegisterHandler = useCallback(async (e:any): Promise<void> => {
+        if (isRegistered) {
+            await toggleRegisterToEventWithCount(eventId, 0, setIsRegistered);
+        } else {
+            const count = e.target.innerText;
+            await toggleRegisterToEventWithCount(eventId, count, setIsRegistered);
+        }
+    }, [eventId, toggleRegisterToEventWithCount]);
     const onUserRegisterhandler = () => {
         setAuthorizationModalState(true);
     }
     const currentDate = new Date();
     const dates = new Date(eventDates[0].dateTime);
-    
+
 
     useEffect(() => {
         if (userState) {
@@ -104,27 +125,27 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
             <Panel bordered className={cls.informationPanel}>
                 <Stack direction="column" spacing={10} alignItems="flex-start">
                     <Stack alignItems="center" justifyContent="center" spacing={5}>
-                        <CalendarIcon className={cls.informationPanelIcon} />
+                        <CalendarIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{eventDate(eventDates[0].dateTime)}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <SomIcon className={cls.informationPanelIcon} fill="#EF8A29" />
+                        <SomIcon className={cls.informationPanelIcon} fill="#EF8A29"/>
                         <Typography variant="body-3">{eventPrice(priceFrom, priceTo)}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <MapIcon className={cls.informationPanelIcon} />
+                        <MapIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{locationName}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <MapPinIcon className={cls.informationPanelIcon} />
+                        <MapPinIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{typeOfLocation}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <IdentificationIcon className={cls.informationPanelIcon} />
+                        <IdentificationIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{ageLimits}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <LanguageIcon className={cls.informationPanelIcon} />
+                        <LanguageIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{eventLanguage}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
@@ -132,117 +153,118 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                         <Typography variant="body-3">{city}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <UserGroupIcon className={cls.informationPanelIcon} />
+                        <UserGroupIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">{audience}</Typography>
                     </Stack>
                     <Stack alignItems="center" spacing={5}>
-                        <HashtagIcon className={cls.informationPanelIcon} />
+                        <HashtagIcon className={cls.informationPanelIcon}/>
                         <Typography variant="body-3">
                             {eventCategories(categories)}
                         </Typography>
                     </Stack>
                     {
-                    (<Stack alignItems="center" spacing={5}>
-                        <TicketIcon className={cls.informationPanelIcon} />
-                        <Typography variant="body-3">
-                           {ticketsNumber? "Количество свободных мест: " + ticketsNumber: "Неограниченное количество мест"}
-                        </Typography>                        
-                    </Stack>)}
+                        (<Stack alignItems="center" spacing={5}>
+                            <TicketIcon className={cls.informationPanelIcon}/>
+                            <Typography variant="body-3">
+                                {ticketsNumber ? "Количество свободных мест: " + ticketsNumber : "Неограниченное количество мест"}
+                            </Typography>
+                        </Stack>)}
                 </Stack>
 
                 <div className={cls.informationPanelButtons}>
-                    {(dates > currentDate)?
-                    ((userState !== null)?
-                    ((ticketsNumber)?
-                        <Button
-                            block
-                            appearance="primary"
-                            className={cls.informationPanelButton}
-                            onClick={onRegisterHandler}
-                            loading={eventRegistering || userState === null}
-                        >
-                            {isRegistered ? 'Отменить бронь' : 'Забронировать'}
-                            <TicketIcon width={18} height={18} />
-                    </Button>
-                        // <Dropdown
-                        // title={isRegistered ? 'Отменить бронь' : 'Забронировать'}
-                        // className={cls.informationPanelButton}
-                        // appearance="primary"
-                        // icon={<TicketIcon width={18} height={18} />}
-                        // >
-                        //     <Dropdown.Item
-                        //         onClick={onRegisterHandler}
-                        //         className={cls.informationPanelButton}
-                        //     >
-                        //         1
-                        //     </Dropdown.Item>
-                        //     <Dropdown.Item
-                        //         onClick={onRegisterHandler}
-                        //         className={cls.informationPanelButton}
-                        //     >
-                        //         2
-                        //     </Dropdown.Item>
-                        //     <Dropdown.Item
-                        //         onClick={onRegisterHandler}
-                        //         className={cls.informationPanelButton}
-                        //     >
-                        //         3
-                        //     </Dropdown.Item>
-                        //     <Dropdown.Item
-                        //         onClick={onRegisterHandler}
-                        //         className={cls.informationPanelButton}
-                        //     >
-                        //         4
-                        //     </Dropdown.Item>
-                        //     <Dropdown.Item
-                        //         onClick={onRegisterHandler}
-                        //         className={cls.informationPanelButton}
-                        //     >
-                        //         5
-                        //     </Dropdown.Item>
-                        // </Dropdown>
-                        : "")
+                    {(dates > currentDate) ?
+                        ((userState !== null) ?
+                            ((ticketsNumber) ?
+                                    (isRegistered ?
+                                        (<Button
+                                            block
+                                            appearance="primary"
+                                            className={cls.informationPanelButton}
+                                            onClick={onRegisterHandler}
+                                            loading={eventRegistering || userState === null}
+                                        >
+                                            Отменить бронь
+                                            <TicketIcon width={18} height={18}/>
+                                        </Button>) :
+                                        (<Dropdown
+                                            title={'Забронировать'}
+                                            className={cls.informationPanelButton}
+                                            appearance="primary"
+                                            icon={<TicketIcon width={18} height={18}/>}
+                                        >
+                                            <Dropdown.Item
+                                                onClick={onRegisterHandler}
+                                                className={cls.informationPanelButton}
+                                            >
+                                                1
+                                            </Dropdown.Item>
+                                            <Dropdown.Item
+                                                onClick={onRegisterHandler}
+                                                className={cls.informationPanelButton}
+                                            >
+                                                2
+                                            </Dropdown.Item>
+                                            <Dropdown.Item
+                                                onClick={onRegisterHandler}
+                                                className={cls.informationPanelButton}
+                                            >
+                                                3
+                                            </Dropdown.Item>
+                                            <Dropdown.Item
+                                                onClick={onRegisterHandler}
+                                                className={cls.informationPanelButton}
+                                            >
+                                                4
+                                            </Dropdown.Item>
+                                            <Dropdown.Item
+                                                onClick={onRegisterHandler}
+                                                className={cls.informationPanelButton}
+                                            >
+                                                5
+                                            </Dropdown.Item>
+                                        </Dropdown>))
+                                : "")
 
-                    :
-                    <Button
-                            block
-                            appearance="primary"
-                            className={cls.informationPanelButton}
-                            onClick={onUserRegisterhandler}
-                        >
-                            Забронировать
-                            <TicketIcon width={18} height={18} />
-                        </Button>): <div> </div>
+                            :
+                            <Button
+                                block
+                                appearance="primary"
+                                className={cls.informationPanelButton}
+                                onClick={onUserRegisterhandler}
+                            >
+                                Забронировать
+                                <TicketIcon width={18} height={18}/>
+                            </Button>) : <div></div>
                     }
-                    
-                    {userState !== null?
+
+                    {userState !== null ?
                         <Button
-                        onClick={onSaveHandler}
-                        loading={eventBookmarking || userState === null}
-                        block
-                        appearance="ghost"
-                        color="yellow"
-                        className={cls.informationPanelButton}
-                    >
-                        {isBooked ? 'Удалить из избранных' : 'Добавить в избранные'}
-                        <BookmarkIcon
-                            width={18}
-                            height={18}
-                        />
-                    </Button>:
-                    <Button
-                    onClick={onUserRegisterhandler}
-                    block
-                    appearance="ghost"
-                    color="yellow"
-                    className={cls.informationPanelButton}
-                >
-                    Добавить в избранные
-                    <BookmarkIcon
-                        width={18}
-                        height={18}
-                    />
-                </Button>
+                            onClick={onSaveHandler}
+                            loading={eventBookmarking || userState === null}
+                            block
+                            appearance="ghost"
+                            color="yellow"
+                            className={cls.informationPanelButton}
+                        >
+                            {isBooked ? 'Удалить из избранных' : 'Добавить в избранные'}
+                            <BookmarkIcon
+                                width={18}
+                                height={18}
+                            />
+                        </Button> :
+                        <Button
+                            onClick={onUserRegisterhandler}
+                            block
+                            appearance="ghost"
+                            color="yellow"
+                            className={cls.informationPanelButton}
+                        >
+                            Добавить в избранные
+                            <BookmarkIcon
+                                width={18}
+                                height={18}
+                            />
+                        </Button>
                     }
                 </div>
             </Panel>

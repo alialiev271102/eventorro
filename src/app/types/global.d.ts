@@ -29,7 +29,7 @@ export interface ticketUser {
 export interface EventFromBackend {
     readonly id: number
     readonly name: string;
-    readonly isModerate: boolean
+    readonly is_moderate: boolean
     readonly city: string;
     readonly poster:string;
     readonly price_from:number | null;

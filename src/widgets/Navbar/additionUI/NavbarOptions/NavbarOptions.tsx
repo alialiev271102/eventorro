@@ -114,14 +114,14 @@ export const NavbarOptions = () => {
                     >
                         {userState?.userInformation.isHost ? "Создать событие" : userState?.userInformation.isHost === false ? "Регистрация как Организатор" : "Создать событие"}
                     </Dropdown.Item>
-                    <InputPicker
-                        style={{ width: 228 }}
+                    {pathname === '/' ?<InputPicker
+                        style={{width: 228}}
                         onChange={setCity}
                         value={city}
                         data={citys}
                         disabled={filterLoading}
-                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите локацию'}
-                    />
+                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите город'}
+                    />:''}
                 </Dropdown>
                 <Authorization/>
                 <ChangeRole/>
@@ -134,32 +134,15 @@ export const NavbarOptions = () => {
     return (
         <div>
             <Stack spacing={5}>
-                {/*<Dropdown*/}
-                {/*    className={cls.dropDownItem}*/}
-                {/*    appearance="primary"*/}
-                {/*    icon={<BuildingOfficeIcon width={18} height={18}/>}*/}
-                {/*    title={"Выберите город"}*/}
-                {/*    size="md"*/}
-                {/*    placement="bottomEnd"*/}
-                {/*>*/}
-                {/*    {events.map(city => {*/}
-                {/*        return(*/}
-                {/*            <Dropdown.Item*/}
-                {/*                className={cls.dropDownItem}*/}
-                {/*            >*/}
-                {/*                {city.eventProperties.city}*/}
-                {/*            </Dropdown.Item>*/}
-                {/*        )*/}
-                {/*    })}*/}
-                {/*</Dropdown>*/}
-                <InputPicker
-                    style={{ width: 228 }}
+                {   pathname === '/'?
+                    <InputPicker
+                    style={{width: 228}}
                     onChange={setCity}
                     value={city}
                     data={citys}
                     disabled={filterLoading}
-                    placeholder={filterLoading ? 'Загрузка...' : 'Выберите локацию'}
-                />
+                    placeholder={filterLoading ? 'Загрузка...' : 'Выберите город'}
+                />:''}
                 {
                     pathname === '/' && (
                         <Button

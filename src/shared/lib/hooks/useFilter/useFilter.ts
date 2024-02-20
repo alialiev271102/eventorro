@@ -100,7 +100,7 @@ export const useFilter = (): useFilterReturn => {
                 const serializedEvents = response.data.map((event) => eventModelSerializer(event));
                 setEvents(serializedEvents.filter(obj => {
                     let parseDate = new Date(obj.eventInfo.eventDates[0].dateTime)
-                    return parseDate >= yesterdayAt1931
+                    return parseDate >= yesterdayAt1931 && obj.eventInfo.isModerate === true;
                 }));
             })
             .catch((error) => axiosErrorHandler(error))

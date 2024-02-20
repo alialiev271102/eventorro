@@ -11,7 +11,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
         author,
         categories,
         city,
-        isModerate,
+        is_moderate: isModerate,
         event_language: eventLanguage,
         event_dates: eventDates,
         event_card_image: eventCardImage,
