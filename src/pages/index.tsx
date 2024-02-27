@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 
 import { FilterDesktop, FilterMobile } from '@/features/Filter';
 import { Layout } from '@/shared/components/Layout';
@@ -14,6 +14,11 @@ export default function Home() {
     const { mediaQueryMaxWidth960px } = useQueries();
     const { filterFunctions } = useFilter();
     const { getFilterValues } = filterFunctions;
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     const { authorizationFunction } = useAuthorization();
     const { checkAuthorization } = authorizationFunction;
@@ -45,7 +50,7 @@ export default function Home() {
             </Head>
             <main className={cls.main}>
                 {
-                    mediaQueryMaxWidth960px ? (
+                    mediaQueryMaxWidth960px && isClient ? (
                         <Layout className={cls.mobileApp}>
                             <FilterMobile />
                             <Events />

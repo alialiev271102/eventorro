@@ -1,15 +1,13 @@
-import {
-    Dispatch, SetStateAction, useCallback, useState,
-} from 'react';
-import { toast } from 'react-toastify';
+import {Dispatch, SetStateAction, useCallback, useState,} from 'react';
+import {toast} from 'react-toastify';
 
-import { Event, EventFromBackend, UserFromBackend } from '@/app/types/global';
-import { axiosInstanceWithBearer, axiosInstanceWithoutBearer } from '@/shared/lib/constants/axiosInstance';
-import { axiosErrorHandler } from '@/shared/lib/helpers/axiosErrorHandler';
-import { eventModelSerializer } from '@/shared/lib/helpers/modelserializers';
-import { useAuthorization } from '@/shared/lib/hooks/useAuthorization/useAuthorization';
+import {Event, EventFromBackend, UserFromBackend} from '@/app/types/global';
+import {axiosInstanceWithBearer, axiosInstanceWithoutBearer} from '@/shared/lib/constants/axiosInstance';
+import {axiosErrorHandler} from '@/shared/lib/helpers/axiosErrorHandler';
+import {eventModelSerializer} from '@/shared/lib/helpers/modelserializers';
+import {useAuthorization} from '@/shared/lib/hooks/useAuthorization/useAuthorization';
 
-import { AuthorData, CreateEventProps, UseEventReturn } from './useEvent.type';
+import {AuthorData, CreateEventProps, UseEventReturn} from './useEvent.type';
 
 export const useEvent = (): UseEventReturn => {
     const [eventBookmarking, setEventBookmarking] = useState<boolean>(false);
@@ -23,8 +21,8 @@ export const useEvent = (): UseEventReturn => {
     const [authorDataLoading, setAuthorDataLoading] = useState<boolean>(false);
     const [authorData, setAuthorData] = useState<AuthorData | null>(null);
 
-    const { authorizationFunction } = useAuthorization();
-    const { getUserData } = authorizationFunction;
+    const {authorizationFunction} = useAuthorization();
+    const {getUserData} = authorizationFunction;
 
     const toggleEventSaveState = useCallback(async (id: number): Promise<void> => {
         setEventBookmarking(true);
@@ -78,7 +76,7 @@ export const useEvent = (): UseEventReturn => {
         setIsRegistered: Dispatch<SetStateAction<boolean>>,
     ): Promise<void> => {
         setEventRegistering(true);
-        await axiosInstanceWithBearer.get<'Сохранено'| 'Удалено'>(`/events/${eventId}/get_ticket/`)
+        await axiosInstanceWithBearer.get<'Сохранено' | 'Удалено'>(`/events/${eventId}/get_ticket/`)
             .then(async (response) => {
                 if (response.data === 'Сохранено') {
                     setIsRegistered(true);
@@ -102,7 +100,7 @@ export const useEvent = (): UseEventReturn => {
         setIsRegistered: Dispatch<SetStateAction<boolean>>,
     ): Promise<void> => {
         setEventRegistering(true);
-        await axiosInstanceWithBearer.post<'Сохранено'| 'Удалено'>(`/events/${eventId}/get_ticket/`,{'count': count})
+        await axiosInstanceWithBearer.post<'Сохранено' | 'Удалено'>(`/events/${eventId}/get_ticket/`, {'count': count})
             .then(async (response) => {
                 if (response.data === 'Сохранено') {
                     setIsRegistered(true);
@@ -151,8 +149,20 @@ export const useEvent = (): UseEventReturn => {
         axiosInstanceWithBearer.post('/events/create_event/', data)
             .then(() => {
                 getUserData();
-                toast.success('Ивент успешно создан', {
-                    autoClose: 1500
+                toast.success('Ивент успешно создан! Ваше событие находится на проверке. Оно станет доступно на главной странице после модерации.', {
+                    autoClose: 15000,
+                    position: toast.POSITION.TOP_CENTER,
+                    closeOnClick: false,
+                    hideProgressBar: false,
+                    icon: false,
+                    style: {
+                        width: "300px",
+                        height: "120px",
+                        marginTop: window.innerWidth <= 600 ? "50%" : "50%",
+                        marginLeft: window.innerWidth <= 600 ? "auto" : "0",
+                        marginRight: window.innerWidth <= 600 ? "auto" : "0",
+                        textAlign: "center",
+                    },
                 });
             })
             .catch((error) => axiosErrorHandler(error))

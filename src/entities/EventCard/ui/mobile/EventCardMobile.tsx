@@ -100,21 +100,16 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                 )}
 
                 {userState && withDrawer && (
-                    <button
-                        type="button"
-                        className={cls.saveToBookmarkBlock}
-                        disabled={isEventCardDrawerOpen}
+                    <Button
+                        disabled={eventBookmarking}
                         onClick={() => setIsEventCardDrawerOpen(true)}
+                        color="orange"
+                        appearance="primary"
+                        size="xs"
+                        className={cls.bookmark}
                     >
-                        <Button
-                            color="red"
-                            appearance="primary"
-                            size="xs"
-                            className={cls.bookmark}
-                        >
-                            Настроить ивент
-                        </Button>
-                    </button>
+                        Настроить ивент
+                    </Button>
                 )}
 
             </div>

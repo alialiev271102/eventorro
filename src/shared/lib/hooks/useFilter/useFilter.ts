@@ -105,7 +105,7 @@ export const useFilter = (): useFilterReturn => {
             })
             .catch((error) => axiosErrorHandler(error))
             .finally(() => setEventLoading(false));
-    }, [age, audience, category, date, location, setEventLoading, setEvents]);
+    }, [age, audience, category, date, location, setEventLoading, setEvents, city]);
 
     const getFilterValues = useCallback(async (): Promise<void> => {
         setFilterLoading(true);
@@ -161,11 +161,11 @@ export const useFilter = (): useFilterReturn => {
             })
             .catch((error) => { axiosErrorHandler(error); });
         setFilterLoading(false);
-    }, [setAges, setAudiences, setCategories, setFilterLoading, setLocations]);
+    }, [setAges, setAudiences, setCitys,  setCategories, setFilterLoading, setLocations]);
 
     useEffect(() => {
         filteringEvents();
-    }, [age, category, audience, location, date, filteringEvents]);
+    }, [age, category, audience, location, date, city, filteringEvents]);
 
     return {
         filterFunctions: {

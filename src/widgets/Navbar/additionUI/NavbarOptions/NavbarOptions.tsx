@@ -7,7 +7,7 @@ import {
     PlusIcon,
 } from '@heroicons/react/24/outline';
 import {useRouter} from 'next/router';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {toast} from 'react-toastify';
 import {Button, Dropdown, InputPicker, Stack} from 'rsuite';
 
@@ -34,7 +34,10 @@ export const NavbarOptions = () => {
 
     const {authorizationSetStates, authorizationStates, authorizationFunction} = useAuthorization();
     const {push, pathname} = useRouter();
-
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
 
     const {
@@ -91,44 +94,46 @@ export const NavbarOptions = () => {
     }, [logout, push]);
 
     if (mediaQueryMaxWidth768px && pathname === '/') {
-        return (
-            <div>
-                <Dropdown
-                    title="Меню"
-                    appearance="primary"
-                    placement="bottomEnd"
-                    noCaret
-                    size="md"
-                >
-                    <Dropdown.Item
-                        icon={<IdentificationIcon width={18} height={18}/>}
-                        onClick={onAccountHandler}
-                        className={cls.dropDownItem}
+        if (isClient) {
+            return (
+                <div>
+                    <Dropdown
+                        title="Меню"
+                        appearance="primary"
+                        placement="bottomEnd"
+                        noCaret
+                        size="md"
                     >
-                        {userState !== null ? 'Профиль' : 'Войти'}
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                        className={cls.dropDownItem}
-                        icon={<PlusIcon width={18} height={18}/>}
-                        onClick={onCreateEventHandler}
-                    >
-                        {userState?.userInformation.isHost ? "Создать событие" : userState?.userInformation.isHost === false ? "Регистрация как Организатор" : "Создать событие"}
-                    </Dropdown.Item>
-                    {pathname === '/' ?<InputPicker
-                        style={{width: 228}}
-                        onChange={setCity}
-                        value={city}
-                        data={citys}
-                        disabled={filterLoading}
-                        placeholder={filterLoading ? 'Загрузка...' : 'Выберите город'}
-                    />:''}
-                </Dropdown>
-                <Authorization/>
-                <ChangeRole/>
-                <RecoverPasswordModal/>
-                <ResetPassword/>
-            </div>
-        );
+                        <Dropdown.Item
+                            icon={<IdentificationIcon width={18} height={18}/>}
+                            onClick={onAccountHandler}
+                            className={cls.dropDownItem}
+                        >
+                            {userState !== null ? 'Профиль' : 'Войти'}
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                            className={cls.dropDownItem}
+                            icon={<PlusIcon width={18} height={18}/>}
+                            onClick={onCreateEventHandler}
+                        >
+                            {userState?.userInformation.isHost ? "Создать событие" : userState?.userInformation.isHost === false ? "Регистрация как Организатор" : "Создать событие"}
+                        </Dropdown.Item>
+                        {pathname === '/' ?<InputPicker
+                            style={{width: 228}}
+                            onChange={setCity}
+                            value={city}
+                            data={citys}
+                            disabled={filterLoading}
+                            placeholder={filterLoading ? 'Загрузка...' : 'Выберите город'}
+                        />:''}
+                    </Dropdown>
+                    <Authorization/>
+                    <ChangeRole/>
+                    <RecoverPasswordModal/>
+                    <ResetPassword/>
+                </div>
+            );
+        }
     }
 
     return (

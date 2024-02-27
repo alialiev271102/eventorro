@@ -113,7 +113,7 @@ export const EventFormTab = () => {
 
         const createdEvent: Partial<CreateEventProps> = {
             name: data.name,
-            city: city,
+            city,
             video: data.video ? data.video : '',
             isModerate: false,
             audience: localAudience,
@@ -146,7 +146,6 @@ export const EventFormTab = () => {
         setPoster(null);
         setIsFree(false);
         setRegisterHere(false);
-        setCity('');
         setLocalDescription('');
         setLocalAudience('');
         setLocalAge('');
