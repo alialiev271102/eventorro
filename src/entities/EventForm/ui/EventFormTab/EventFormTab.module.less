@@ -11,7 +11,10 @@
 }
 
 .banner {
-  max-height: 400px !important;
+  height: 400px !important;
+  @media screen and (max-width: 601px) {
+    height: 200px !important;
+  }
 }
 
 .eventFormTextarea {

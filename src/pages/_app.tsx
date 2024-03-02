@@ -39,7 +39,8 @@ export default function App({Component, pageProps}: AppProps) {
                                         bottom: '20px',
                                         right: '20px',
                                         border: '1px solid #FFA500',
-                                        borderRadius: '50%'
+                                        borderRadius: '50%',
+                                        zIndex: '1200'
                                     }}>
                         </IconButton>
                         <Footer></Footer>
