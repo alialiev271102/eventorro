@@ -2,7 +2,7 @@ import 'rsuite/styles/index.less';
 import '../app/styles/index.less';
 
 import type {AppProps} from 'next/app';
-import {Suspense} from 'react';
+import {Suspense, useEffect, useState} from 'react';
 import {ToastContainer} from 'react-toastify';
 import {CustomProvider, Footer, IconButton} from 'rsuite';
 import ruRu from 'rsuite/locales/ru_RU';
@@ -16,6 +16,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ArrowUpIcon} from "@heroicons/react/24/outline";
 
 export default function App({Component, pageProps}: AppProps) {
+
+    const [client, setClient] = useState<boolean>(false);
+
+    useEffect(() => {
+        setClient(true)
+    }, []);
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -29,9 +35,9 @@ export default function App({Component, pageProps}: AppProps) {
                     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                     <CustomProvider locale={ruRu}>
                         <Navbar/>
-                        <Suspense fallback="Loading">
+                        {client?<Suspense fallback="Loading">
                             <Component className={'main'} {...pageProps} />
-                        </Suspense>
+                        </Suspense>: ''}
                         <IconButton onClick={scrollToTop}
                                     icon={<ArrowUpIcon color={'#FFA500'} style={{width: '20px', height: '20px'}}/>}
                                     style={{

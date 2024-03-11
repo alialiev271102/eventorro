@@ -221,6 +221,10 @@ export const EventEditDrawer: FC<EventFormDrawerProps> = (props) => {
                             <Button
                                 appearance="primary"
                                 color="red"
+                                style={{
+                                    width:"270px",
+                                    height: "50px"
+                                }}
                                 onClick={() => setOpenAlert(true)}
                             >
                                 Удалить ивент

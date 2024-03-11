@@ -102,7 +102,7 @@ export const useEvent = (): UseEventReturn => {
         setEventRegistering(true);
         await axiosInstanceWithBearer.post<'Сохранено' | 'Удалено'>(`/events/${eventId}/get_ticket/`, {'count': count})
             .then(async (response) => {
-                if (response.data === 'Сохранено') {
+                if (response.data === `${count} Tickets as add`) {
                     setIsRegistered(true);
                     toast.success('Бронь прошла успешно', {
                         autoClose: 1500
