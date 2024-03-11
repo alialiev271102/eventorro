@@ -59,14 +59,24 @@ export interface useAuthorizationReturn {
         authorizationModalState: boolean,
         changeRoleLoading: boolean,
         changeRoleModalState: boolean,
+        getTicketLoading: boolean,
+        getTicketModalState: boolean,
+        count: string,
+        ticketEventId: number,
+        ticketEventReg: boolean,
+        ticketEventName: string,
         userLoading: boolean,
         authorizationLoading: boolean,
         authorizationType: authorizationType,
         recoverPasswordState: resetPasswordState,
     };
     authorizationSetStates: {
-        setEditUserModalState: Dispatch<SetStateAction<boolean>>
-        setIsAuthorized: Dispatch<SetStateAction<boolean>>
+        setEditUserModalState: Dispatch<SetStateAction<boolean>>;
+        setTicketEventId: Dispatch<SetStateAction<number>>;
+        setTicketEventReg: Dispatch<SetStateAction<boolean>>;
+        setTicketEventName: Dispatch<SetStateAction<string>>;
+        setCount: Dispatch<SetStateAction<string>>;
+        setIsAuthorized: Dispatch<SetStateAction<boolean>>;
         setUserLoading: Dispatch<SetStateAction<boolean>>;
         setAuthorizationLoading: Dispatch<SetStateAction<boolean>>
         setAuthorizationModalState: Dispatch<SetStateAction<boolean>>;
@@ -75,6 +85,8 @@ export interface useAuthorizationReturn {
         setRecoverPasswordModalState: Dispatch<SetStateAction<boolean>>;
         setResetPasswordModalState: Dispatch<SetStateAction<boolean>>;
         setAuthorizationType: Dispatch<SetStateAction<authorizationType>>;
-        setRecoverPasswordState: Dispatch<SetStateAction<resetPasswordState>>
+        setTicketModalState: Dispatch<SetStateAction<boolean>>;
+        setTicketLoading: Dispatch<SetStateAction<boolean>>;
+        setRecoverPasswordState: Dispatch<SetStateAction<resetPasswordState>>;
     }
 }

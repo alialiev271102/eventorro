@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import {Dispatch, SetStateAction, useCallback, useContext} from 'react';
 import { toast } from 'react-toastify';
 
 import { User, UserFromBackend } from '@/app/types/global';
@@ -24,6 +24,10 @@ export const useAuthorization = (): useAuthorizationReturn => {
         setChangeRoleModalState,
         setResetPasswordModalState,
         setUserState,
+        getTicketModalState,
+        getTicketLoading,
+        setTicketModalState,
+        setTicketLoading,
         changeRoleModalState,
         changeRoleLoading,
         setAuthorizationType,
@@ -38,6 +42,14 @@ export const useAuthorization = (): useAuthorizationReturn => {
         userState,
         editUserModalState,
         setEditUserModalState,
+        count,
+        setCount,
+        ticketEventId,
+        ticketEventReg,
+        ticketEventName,
+        setTicketEventId,
+        setTicketEventReg,
+        setTicketEventName,
     } = useContext(AuthorizationContext);
 
     const logout = (): void => {
@@ -241,6 +253,12 @@ export const useAuthorization = (): useAuthorizationReturn => {
             getUserData,
         },
         authorizationSetStates: {
+            setCount,
+            setTicketEventId,
+            setTicketEventReg,
+            setTicketEventName,
+            setTicketModalState,
+            setTicketLoading,
             setIsAuthorized,
             setRecoverPasswordModalState,
             setResetPasswordModalState,
@@ -254,8 +272,14 @@ export const useAuthorization = (): useAuthorizationReturn => {
             setEditUserModalState,
         },
         authorizationStates: {
+            count,
+            ticketEventId,
+            ticketEventReg,
+            ticketEventName,
             changeRoleLoading,
             changeRoleModalState,
+            getTicketModalState,
+            getTicketLoading,
             editUserModalState,
             userState,
             isAuthorized,

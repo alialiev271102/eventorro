@@ -27,8 +27,20 @@ export const AuthorizationContextProvider: FC<AuthorizationContextProviderProps>
     const [resetPasswordModalState, setResetPasswordModalState] = useState<boolean>(false);
     const [editUserModalState, setEditUserModalState] = useState<boolean>(false);
     const [changeRoleLoading,setChangeRoleLoading] = useState<boolean>(false);
+    const [getTicketModalState,setTicketModalState] = useState<boolean>(false);
+    const [getTicketLoading,setTicketLoading] = useState<boolean>(false);
+    const [count, setCount] = useState<string>('0')
+    const [ticketEventId, setTicketEventId] = useState<number>(0)
+    const [ticketEventReg, setTicketEventReg] = useState<boolean>(false)
+    const [ticketEventName, setTicketEventName] = useState<string>(' ')
 
     const AuthorizationLoadingContextProps: AuthorizationContextProps = useMemo(() => ({
+        ticketEventId,
+        ticketEventReg,
+        ticketEventName,
+        setTicketEventId,
+        setTicketEventReg,
+        setTicketEventName,
         userState,
         setUserState,
         isAuthorized,
@@ -41,7 +53,13 @@ export const AuthorizationContextProvider: FC<AuthorizationContextProviderProps>
         setRecoverPasswordModalState,
         resetPasswordModalState,
         setResetPasswordModalState,
+        count,
+        setCount,
         authorizationType,
+        getTicketModalState,
+        setTicketModalState,
+        getTicketLoading,
+        setTicketLoading,
         changeRoleModalState,
         setChangeRoleModalState,
         changeRoleLoading,
@@ -53,8 +71,12 @@ export const AuthorizationContextProvider: FC<AuthorizationContextProviderProps>
         setAuthorizationLoading,
         userLoading,
         setUserLoading,
+
     }), [
+        count,
         userState,
+        getTicketModalState,
+        getTicketLoading,
         changeRoleModalState,
         changeRoleLoading,
         isAuthorized,

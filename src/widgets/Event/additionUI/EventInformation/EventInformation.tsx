@@ -23,21 +23,20 @@ import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 
 import {EventInformationProps} from '../../model/Event.type';
 import cls from './EventInformation.module.less';
+import { GetTicket } from '../GetTicket/GetTicket';
 
 export const EventInformation: FC<EventInformationProps> = (props) => {
 
     const {eventInfo, eventProperties} = props;
 
-    const [isRegistered, setIsRegistered] = useState<boolean>(false);
-
     const {mediaQueryMaxWidth900px, mediaQueryMinWidth600px} = useQueries();
     const {eventFunctions, eventStates} = useEvent();
     const {authorizationSetStates, authorizationStates, authorizationFunction} = useAuthorization();
     const {eventPrice, eventCategories, eventDate} = useDataNormalization();
-    const {setAuthorizationModalState} = authorizationSetStates;
-    const {userState} = authorizationStates;
+    const {setAuthorizationModalState, setTicketModalState, setCount, setTicketEventId, setTicketEventName,setTicketEventReg} = authorizationSetStates;
+    const {userState, ticketEventReg} = authorizationStates;
     const {getUserData} = authorizationFunction;
-    const {toggleEventSaveState, toggleRegisterToEvent, toggleRegisterToEventWithCount} = eventFunctions;
+    const {toggleEventSaveState, toggleRegisterToEventWithCount} = eventFunctions;
     const {eventBookmarking, eventRegistering} = eventStates;
     const {
         typeOfLocation, ageLimits, audience, categories, city
@@ -62,15 +61,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
     const onSaveHandler = useCallback(async (): Promise<void> => {
         await toggleEventSaveState(eventId);
     }, [eventId, toggleEventSaveState]);
-
-    const onRegisterHandler = useCallback(async (e:any): Promise<void> => {
-        if (isRegistered) {
-            await toggleRegisterToEventWithCount(eventId, 0, setIsRegistered);
-        } else {
-            const count = e.target.innerText;
-            await toggleRegisterToEventWithCount(eventId, count, setIsRegistered);
-        }
-    }, [eventId, toggleRegisterToEventWithCount]);
+    
     const onUserRegisterhandler = () => {
         setAuthorizationModalState(true);
     }
@@ -81,7 +72,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
     useEffect(() => {
         if (userState) {
             const isRegister = ticketUsers.some((ticketUser) => ticketUser.userId === userState.userInformation.id);
-            setIsRegistered(isRegister);
+            setTicketEventReg(isRegister);
         } else if (localStorage.getItem(ACCESS_TOKEN_KEY)) {
             getUserData();
         }
@@ -90,8 +81,18 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
     if (typeof eventInfo === 'undefined' || typeof eventProperties === 'undefined') {
         return null;
     }
+
+    const onRegisterHandler = useCallback(async (e:any): Promise<void> => {
+        setCount(e.target.innerText);
+        setTicketEventName(eventName);
+        setTicketEventId(eventId);
+        setTicketModalState(true);
+    }, []);
+
+
     return (
         <div className={cls.EventInformation}>
+           <GetTicket/>
             <div className={cls.titleAndDescriptionBlock}>
                 <Typography
                     bold
@@ -175,7 +176,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                     {(dates > currentDate) ?
                         ((userState !== null) ?
                             ((ticketsNumber) ?
-                                    (isRegistered ?
+                                    (ticketEventReg ?
                                         (<Button
                                             block
                                             appearance="primary"
@@ -190,6 +191,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                                             title={'Забронировать'}
                                             className={cls.informationPanelButton}
                                             appearance="primary"
+                                            disabled={eventRegistering || userState === null}
                                             icon={<TicketIcon width={18} height={18}/>}
                                         >
                                             <Dropdown.Item

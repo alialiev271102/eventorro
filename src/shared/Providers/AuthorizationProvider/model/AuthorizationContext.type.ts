@@ -19,8 +19,20 @@ export interface AuthorizationContextProps {
     authorizationModalState: boolean;
     changeRoleLoading: boolean,
     changeRoleModalState: boolean,
+    count:string,
+    setCount:Dispatch<SetStateAction<string>>,
+    ticketEventId: number,
+    setTicketEventId: Dispatch<SetStateAction<number>>;
+    ticketEventReg: boolean,
+    setTicketEventReg: Dispatch<SetStateAction<boolean>>;
+    ticketEventName: string,
+    setTicketEventName: Dispatch<SetStateAction<string>>;
+    getTicketLoading: boolean,
+    getTicketModalState: boolean,
     setChangeRoleLoading: Dispatch<SetStateAction<boolean>>;
     setChangeRoleModalState: Dispatch<SetStateAction<boolean>>;
+    setTicketLoading: Dispatch<SetStateAction<boolean>>;
+    setTicketModalState: Dispatch<SetStateAction<boolean>>;
     setAuthorizationModalState: Dispatch<SetStateAction<boolean>>;
     recoverPasswordModalState: boolean;
     setRecoverPasswordModalState: Dispatch<SetStateAction<boolean>>;
