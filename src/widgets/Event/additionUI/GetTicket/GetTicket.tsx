@@ -1,5 +1,5 @@
 import {Button, Loader, Modal} from "rsuite";
-import cls from "@/features/ChangeRole/ui/ChangeRole.module.less";
+import cls from "@/widgets/Event/additionUI/GetTicket/GetTicket.module.less";
 import React, {useCallback, useState} from "react";
 import {Typography} from "@/shared/components/Typography";
 import {useQueries} from "@/shared/lib/hooks/useMediaQuery";
