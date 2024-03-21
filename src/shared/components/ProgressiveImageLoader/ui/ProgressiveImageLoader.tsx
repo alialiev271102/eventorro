@@ -107,8 +107,8 @@ export const ProgressiveImageLoader:FC<ProgressiveImageLoaderProps> = memo<Progr
                     error && (
                         <img
                             style={{
-                                width: `${width}${widthUnitsOfMeasure}`,
-                                height: `${height}${heightUnitsOfMeasure}`,
+                                width: '24px',
+                                height: '24px',
                             }}
                             alt="error_image-not-found"
                             src={errorImage}

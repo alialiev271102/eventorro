@@ -1,13 +1,15 @@
-import {Dispatch, SetStateAction, useCallback, useState,} from 'react';
-import {toast} from 'react-toastify';
+import {
+    Dispatch, SetStateAction, useCallback, useState,
+} from 'react';
+import { toast } from 'react-toastify';
 
-import {Event, EventFromBackend, UserFromBackend} from '@/app/types/global';
-import {axiosInstanceWithBearer, axiosInstanceWithoutBearer} from '@/shared/lib/constants/axiosInstance';
-import {axiosErrorHandler} from '@/shared/lib/helpers/axiosErrorHandler';
-import {eventModelSerializer} from '@/shared/lib/helpers/modelserializers';
-import {useAuthorization} from '@/shared/lib/hooks/useAuthorization/useAuthorization';
+import { Event, EventFromBackend, UserFromBackend } from '@/app/types/global';
+import { axiosInstanceWithBearer, axiosInstanceWithoutBearer } from '@/shared/lib/constants/axiosInstance';
+import { axiosErrorHandler } from '@/shared/lib/helpers/axiosErrorHandler';
+import { eventModelSerializer } from '@/shared/lib/helpers/modelserializers';
+import { useAuthorization } from '@/shared/lib/hooks/useAuthorization/useAuthorization';
 
-import {AuthorData, CreateEventProps, UseEventReturn} from './useEvent.type';
+import { AuthorData, CreateEventProps, UseEventReturn } from './useEvent.type';
 
 export const useEvent = (): UseEventReturn => {
     const [eventBookmarking, setEventBookmarking] = useState<boolean>(false);
@@ -21,8 +23,8 @@ export const useEvent = (): UseEventReturn => {
     const [authorDataLoading, setAuthorDataLoading] = useState<boolean>(false);
     const [authorData, setAuthorData] = useState<AuthorData | null>(null);
 
-    const {authorizationFunction} = useAuthorization();
-    const {getUserData} = authorizationFunction;
+    const { authorizationFunction } = useAuthorization();
+    const { getUserData } = authorizationFunction;
 
     const toggleEventSaveState = useCallback(async (id: number): Promise<void> => {
         setEventBookmarking(true);
@@ -30,11 +32,11 @@ export const useEvent = (): UseEventReturn => {
             .then(async (response) => {
                 if (response.data === 'удалено') {
                     toast.success('Мероприятие успешно было удалено из избранных', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 } else {
                     toast.success('Мероприятие успешно было добавлено в избранные', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 }
                 await getUserData();
@@ -81,12 +83,12 @@ export const useEvent = (): UseEventReturn => {
                 if (response.data === 'Сохранено') {
                     setIsRegistered(true);
                     toast.success('Бронь прошла успешно', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 } else {
                     setIsRegistered(false);
                     toast.success('Вы успешно отменили бронь', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 }
             })
@@ -100,17 +102,17 @@ export const useEvent = (): UseEventReturn => {
         setIsRegistered: Dispatch<SetStateAction<boolean>>,
     ): Promise<void> => {
         setEventRegistering(true);
-        await axiosInstanceWithBearer.post<'Сохранено' | 'Удалено'>(`/events/${eventId}/get_ticket/`, {'count': count})
+        await axiosInstanceWithBearer.post<'Сохранено' | 'Удалено'>(`/events/${eventId}/get_ticket/`, { count })
             .then(async (response) => {
                 if (response.data === `${count} Tickets as add`) {
                     setIsRegistered(true);
                     toast.success('Бронь прошла успешно', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 } else {
                     setIsRegistered(false);
                     toast.success('Вы успешно отменили бронь', {
-                        autoClose: 1500
+                        autoClose: 1500,
                     });
                 }
             })
@@ -124,19 +126,19 @@ export const useEvent = (): UseEventReturn => {
             .then(() => {
                 getUserData();
                 toast.success('Ивент успешно изменен', {
-                    autoClose: 1500
+                    autoClose: 1500,
                 });
             })
             .catch((error) => axiosErrorHandler(error))
             .finally(() => setUpdatingEvent(false));
-    }, []);
+    }, [getUserData]);
 
     const deleteEvent = useCallback(async (id: number): Promise<void> => {
         setEventDeleting(true);
         await axiosInstanceWithBearer.delete(`/events/${id}/delete_event/`)
             .then(() => {
                 toast.success('Ивент успешно удален', {
-                    autoClose: 1500
+                    autoClose: 1500,
                 });
                 getUserData();
             })
@@ -149,6 +151,7 @@ export const useEvent = (): UseEventReturn => {
         axiosInstanceWithBearer.post('/events/create_event/', data)
             .then(() => {
                 getUserData();
+                // eslint-disable-next-line max-len
                 toast.success('Ивент успешно создан! Ваше событие находится на проверке. Оно станет доступно на главной странице после модерации.', {
                     autoClose: 15000,
                     position: toast.POSITION.TOP_CENTER,
@@ -156,12 +159,12 @@ export const useEvent = (): UseEventReturn => {
                     hideProgressBar: false,
                     icon: false,
                     style: {
-                        width: "300px",
-                        height: "120px",
-                        marginTop: window.innerWidth <= 600 ? "50%" : "50%",
-                        marginLeft: window.innerWidth <= 600 ? "auto" : "0",
-                        marginRight: window.innerWidth <= 600 ? "auto" : "0",
-                        textAlign: "center",
+                        width: '300px',
+                        height: '120px',
+                        marginTop: window.innerWidth <= 600 ? '50%' : '50%',
+                        marginLeft: window.innerWidth <= 600 ? 'auto' : '0',
+                        marginRight: window.innerWidth <= 600 ? 'auto' : '0',
+                        textAlign: 'center',
                     },
                 });
             })

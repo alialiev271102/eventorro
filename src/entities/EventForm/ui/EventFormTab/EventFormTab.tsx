@@ -49,7 +49,7 @@ export const EventFormTab = () => {
     const { filterStates } = useFilter();
 
     const {
-        categories, citys, audiences, ages, locations
+        categories, citys, audiences, ages, locations,
     } = filterStates;
     const eventForm = useForm<EventFormFields>({ mode: 'onBlur' });
     const {
@@ -63,7 +63,7 @@ export const EventFormTab = () => {
             setLocalCategories(value);
         } else {
             toast.error('Максимум можно выбрать 3 категории', {
-                autoClose: 1500
+                autoClose: 1500,
             });
         }
     };
@@ -93,7 +93,7 @@ export const EventFormTab = () => {
     const onCreateNewEvent = (data: EventFormFieldsType) => {
         if (poster === null || banner === null) {
             toast.error('Пожалуйста добавьте постер и баннер', {
-                autoClose: 1500
+                autoClose: 1500,
             });
             return;
         }
@@ -106,7 +106,7 @@ export const EventFormTab = () => {
             || city === null
         ) {
             toast.error('Заполните все данные', {
-                autoClose: 1500
+                autoClose: 1500,
             });
             return;
         }
@@ -123,8 +123,9 @@ export const EventFormTab = () => {
             location_link: data.locationLink,
             event_language: data.eventLanguage,
             // eslint-disable-next-line no-nested-ternary
-            price_to: isFree ? null : (data.priceTo! < 0? data.priceTo! * -1: data.priceTo!),
-            price_from: isFree ? null : (data.priceFrom! < 0? data.priceFrom! * -1: data.priceFrom!),
+            price_to: isFree ? null : (data.priceTo! < 0 ? data.priceTo! * -1 : data.priceTo!),
+            // eslint-disable-next-line no-nested-ternary
+            price_from: isFree ? null : (data.priceFrom! < 0 ? data.priceFrom! * -1 : data.priceFrom!),
             tickets_number: !registerHere ? null : data.ticketsNumber,
             age_limits: localAge,
             event_dates: [date.toISOString()],
@@ -302,11 +303,17 @@ export const EventFormTab = () => {
                         className={cls.eventFormCheckBox}
                         variant="body-2"
                     >
-                        Регистрировать гостей через эту платформу <br/>
-                        <span> При регистрации гостя на событие, организатор получает уведомление на e-mail с контактами гостя.</span>
+                        Регистрировать гостей через эту платформу
+                        {' '}
+                        <br />
+                        <span>
+                            При регистрации гостя на событие,
+                            организатор получает уведомление на e-mail с
+                            контактами гостя.
+                        </span>
                     </Typography>
                 </Checkbox>
-                
+
                 <HookFormInput
                     className={cls.eventFormInputBlock}
                     inputClassName={cls.eventFormInput}
@@ -384,6 +391,32 @@ export const EventFormTab = () => {
                     placement="auto"
                     placeholder="Возрастное ограничение"
                 />
+                <Typography
+                    className={cls.eventFormCheckBox}
+                    variant="body-2"
+                >
+                    <input
+                        type="checkbox"
+                        required
+                        style={{
+                            marginRight: '10px',
+                        }}
+                    />
+                    Я согласен с правилами использования
+                </Typography>
+                <Typography
+                    className={cls.eventFormCheckBox}
+                    variant="body-2"
+                >
+                    <input
+                        type="checkbox"
+                        required
+                        style={{
+                            marginRight: '10px',
+                        }}
+                    />
+                    Я согласен с отказом от ответственности
+                </Typography>
                 <Button appearance="primary" type="submit">
                     Создать
                 </Button>

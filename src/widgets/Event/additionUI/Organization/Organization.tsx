@@ -4,6 +4,7 @@ import { Button, Panel, Stack } from 'rsuite';
 
 import { ProgressiveImageLoader } from '@/shared/components/ProgressiveImageLoader';
 import { Typography } from '@/shared/components/Typography';
+import noAvatar from '@/shared/assets/noAvatar.png';
 
 import { OrganizationProps } from '../../model/Event.type';
 import cls from './Organization.module.less';
@@ -22,7 +23,7 @@ export const Organization: FC<OrganizationProps> = (props) => {
                         className={cls.organizationAvatar}
                         heightUnitsOfMeasure="px"
                         widthUnitsOfMeasure="px"
-                        errorImage=""
+                        errorImage={noAvatar.src}
                     />
                 </div>
                 <Stack direction="column" alignItems="flex-start">
@@ -36,6 +37,9 @@ export const Organization: FC<OrganizationProps> = (props) => {
                     >
                         {email}
                     </Button>
+                    <Typography className={cls.organizationPanelName}>
+                        Организатор
+                    </Typography>
                 </Stack>
             </Stack>
         </Panel>

@@ -2,11 +2,12 @@ import {
     AtSymbolIcon, BuildingOffice2Icon, EyeIcon, EyeSlashIcon, LockClosedIcon, PhoneIcon,
     UserIcon,
 } from '@heroicons/react/24/outline';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, InputPicker, Stack } from 'rsuite';
 
 import { HookFormInput } from '@/shared/components/HookFormInput/ui/HookFormInput';
+import { Typography } from '@/shared/components/Typography';
 import {
     emailSchema, nicknameSchema, organizationSchema, phoneSchema, signUpPasswordSchema,
 } from '@/shared/lib/constants/validation';
@@ -39,7 +40,7 @@ export const SignUp = () => {
         if (fieldData.password === fieldData.confirmPassword) {
             await register({
                 ...fieldData,
-                role: signUpType ? signUpType: 'user',
+                role: signUpType || 'user',
             });
         } else {
             setError(SignUpFieldsNames.CONFIRM_PASSWORD, { message: 'Пароли не совподают' });
@@ -146,6 +147,19 @@ export const SignUp = () => {
                         validationSchema={signUpPasswordSchema}
                         errorMessage={errors[SignUpFieldsNames.CONFIRM_PASSWORD]?.message as string}
                     />
+                    <Typography
+                        className={cls.eventFormCheckBox}
+                        variant="body-2"
+                    >
+                        <input
+                            type="checkbox"
+                            required
+                            style={{
+                                marginRight: '10px',
+                            }}
+                        />
+                        Я согласен с отказом от ответственности
+                    </Typography>
                     <Button
                         style={inputStyles}
                         className={cls.submitButton}
