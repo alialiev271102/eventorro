@@ -57,7 +57,7 @@ export const GetTicket = () => {
                 {count !== '0' ? `Вы уверены что хотите забронировать ${count} билетов на мероприятие ${ticketEventName}`
                     : `Вы уверены что хотите отменить бронь на мероприятие ${ticketEventName}`}
             </Typography>
-            <Typography className={cls.authorizationType} />
+            <Typography className={cls.authorizationType}>{' '}</Typography>
             <Button
                 style={inputStyles}
                 className={cls.submitButton}
