@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-recommended-less",
+  "rules": {
+    "indentation": [4],
+    "selector-class-pattern": null
+  }
+}

@@ -1,0 +1,119 @@
+.EventInformation {
+  margin: 50px 0 70px 0;
+  display: flex;
+  gap: 10px;
+
+  @media screen and (max-width: 1200px){
+    flex-direction: column;
+  }
+
+}
+
+.titleAndDescriptionBlock {
+  width: calc(100% - 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  @media screen and (max-width: 1200px){
+    width: calc(100% - 320px);
+  }
+
+  @media screen and (max-width: 1200px){
+    width: 100%;
+  }
+}
+
+.descriptionPanel {
+  width: 100%;
+}
+
+.descriptionFullWidth {
+  font-size: 18px;
+  color: black;
+  word-wrap: break-word;
+  width: 100%;
+  display: inline-block;
+}
+
+.title {
+  //font-family: Apple-System, serif;
+  text-align: start;
+  align-self: start;
+  color: black;
+
+  @media screen and (max-width: 900px){
+    width: 80%;
+  }
+
+  @media screen and (max-width: 530px){
+    font-size: var(--title-3);
+    width: 100%;
+  }
+
+  @media screen and (max-width: 370px){
+    font-size: var(--body-1);
+    width: 100%;
+  }
+}
+
+.informationPanel {
+  width: 400px;
+
+  @media screen and (max-width: 1200px){
+    width: 100%;
+  }
+}
+
+.informationPanelIcon {
+  width: 25px;
+  height: 25px;
+  color: #EF8A29;
+
+  @media screen and (max-width: 600px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.informationPanelButtons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.informationPanelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  button {
+    width: 100%;
+  }
+}
+
+.profileSettings {
+  button {
+    padding: 5px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  svg {
+    margin: 0!important;
+  }
+}
+
+.dropDownItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  button {
+    width: 100%;
+  }
+
+}

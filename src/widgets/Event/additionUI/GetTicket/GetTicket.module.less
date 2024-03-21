@@ -1,0 +1,60 @@
+.modal{
+  height: calc(100vh - 30px);
+  display: flex !important;
+  align-items: center;
+  margin: 0 auto;
+  width: 360px;
+
+  @media screen and (max-width: 405px){
+    width: 90%;
+  }
+}
+
+.modalDialog {
+  position: relative;
+  div{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 405px){
+    width: 100%;
+  }
+}
+
+.loader {
+  position: absolute;
+  z-index: 6;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 20px 0 20px;
+  height: 162px;
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: #F6F6F6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media screen and (max-width: 400px) {
+    font-size: var(--body-1);
+  }
+}
+
+.xMarkIcon{
+  width: 20px;
+  height: 20px;
+}
+
+.authorizationType{
+  margin: 50px 0 20px 0;
+}
+
+.submitButton {
+  margin: auto 0 0;
+}

@@ -1,0 +1,84 @@
+.carouselImages {
+  margin-top: 10px;
+  border-radius: 6px;
+  height: 510px;
+
+  @media screen and (max-width: 900px){
+    height: 300px;
+  }
+  @media screen and (max-width: 600px){
+    height: 220px;
+  }
+
+  @media screen and (max-width: 450px){
+    height: 180px;
+  }
+}
+
+.carouselImageContainer {
+  position: relative;
+}
+
+.carouselBlurImages {
+  object-fit: cover;
+  object-position: center;
+  filter: blur(5px);
+}
+
+.carouselImageBlock{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselImage {
+  max-width: 98%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+
+  @media screen and (max-width: 900px){
+    width: 80%;
+  }
+  @media screen and (max-width: 450px){
+    width: 90%;
+  }
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%; /* Установите желаемую ширину */
+}
+
+.leftArrow, .leftArrow:hover, .leftArrow:active, .leftArrow:focus {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 6em;
+  justify-content: start;
+}
+
+.rightArrow, .rightArrow:hover, .rightArrow:active, .rightArrow:focus{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  right: 0;
+  z-index: 10;
+  height: 100%;
+  width: 6em;
+  justify-content: end;
+}

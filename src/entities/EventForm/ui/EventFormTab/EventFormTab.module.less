@@ -1,0 +1,85 @@
+.posterAndCarousel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  justify-content: space-between;
+
+  @media screen and (max-width: 600px) {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.banner {
+  height: 400px !important;
+  @media screen and (max-width: 601px) {
+    height: 200px !important;
+  }
+}
+
+.eventFormTextarea {
+  min-height: 200px;
+  width: 100%;
+}
+.error {
+  margin-left: 5px;
+}
+
+.poster {
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dates {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.carousel {
+  width: calc(100% - 260px);
+
+  @media screen and (max-width: 850px) {
+    width: calc(100% - 260px);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.eventFormInputBlock {
+  width: 100%;
+}
+
+.eventFormInput {
+  width: 100%;
+}
+
+.eventForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.eventFormPrices {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.eventFormCheckBox {
+  font-size: var(--body-3);
+  @media screen and (max-width: 430px) {
+    font-size: var(--body-4);
+  }
+  span {
+    font-size: 13px;
+    color: gray;
+  }
+}

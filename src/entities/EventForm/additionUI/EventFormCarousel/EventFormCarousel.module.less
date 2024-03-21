@@ -1,0 +1,52 @@
+.uploader {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uploadedImages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid gray;
+  min-height: 244px;
+  border-radius: 4px;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.carouselImageInfo {
+  width: 80%;
+  white-space: normal;
+  min-height: 202px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  @media screen and (max-width: 800px) {
+    font-size: var(--body-3);
+    text-align: center;
+  }
+}
+
+.uploadedCard {
+  width: 97%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.uploadedImage {
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.uploadedImageName {
+  align-self: start;
+}

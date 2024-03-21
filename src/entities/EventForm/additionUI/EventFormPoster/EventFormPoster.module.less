@@ -1,0 +1,48 @@
+.eventFormPoster {
+  margin-top: 20px;
+  width: 220px;
+  height: 290px;
+}
+
+.poster {
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.defaultPosterNotAnyImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  flex-direction: column;
+  border-radius: 6px;
+  color: gray;
+  cursor: pointer;
+  text-align: center;
+  
+}
+
+
+.posterText {
+  font-size: var(--body-5);
+  height: 32px;
+  line-height: 15px;
+  @media screen and (max-width: 550px) {
+    font-size: var(--body-4);
+    height: 15px;
+    line-height: 15px;
+  }
+}
+
+.photoIcon {
+  width: 50px;
+  height: 50px;
+
+  @media screen and (max-width: 550px) {
+    height: 50px;
+    width: 50px;
+  }
+}

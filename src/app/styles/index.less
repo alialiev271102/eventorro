@@ -1,0 +1,67 @@
+@import "reset";
+@import "vars";
+@import '~rsuite/styles/index.less';
+
+body {
+  background: var(--gray-color);
+  padding-top: 6em;
+}
+
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.custom-exiting,
+.custom-entering {
+  animation: .3s linear;
+  animation-fill-mode: forwards;
+}
+
+.custom-exiting {
+  animation-name: zoomOut;
+}
+
+.custom-entering {
+  animation-name: zoomIn;
+}
+
+
+.rs-panel-body {
+  padding: 15px !important;
+}
+
+@primary-color: #EF8A29;
+
+@H050:#fff7f2;
+@H100:#fce0cc;
+@H200:#fac8a2;
+@H300:#f5b078;
+@H400:#f29c50;
+@H500:#ef8a29;
+@H600:#e6821e;
+@H700:#d17513;
+@H800:#b36309;
+@H900:#8a4c01;
