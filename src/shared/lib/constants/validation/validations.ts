@@ -90,12 +90,12 @@ export const eventNameSchema: RegisterOptions = {
 
 export const eventDescriptionSchema: RegisterOptions = {
     minLength: minLength(10),
-    maxLength: maxLength(1000),
+    maxLength: maxLength(2200),
     required,
 };
 
 export const eventLocationSchema: RegisterOptions = {
-    required,
+    
 };
 
 export const eventLanguageSchema: RegisterOptions = {

@@ -24,6 +24,7 @@ import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 import {EventInformationProps} from '../../model/Event.type';
 import cls from './EventInformation.module.less';
 import { GetTicket } from '../GetTicket/GetTicket';
+import React from 'react';
 
 export const EventInformation: FC<EventInformationProps> = (props) => {
 
@@ -100,26 +101,38 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                     variant="title-2"
                 >
                     {eventName}
-                </Typography>
-                {mediaQueryMaxWidth900px ? (
-                    <Panel
-                        className={cls.descriptionPanel}
-                        bordered={mediaQueryMaxWidth900px}
-                        header={mediaQueryMaxWidth900px && 'Описание'}
-                        collapsible={mediaQueryMaxWidth900px}
-                        defaultExpanded={mediaQueryMinWidth600px}
-                    >
-                        {description}
-                    </Panel>
-                ) : (
-                    <Typography
-                        tag="p"
-                        variant="body-1"
-                        className={cls.descriptionFullWidth}
-                    >
-                        {description}
                     </Typography>
-                )}
+                {mediaQueryMaxWidth900px ? (
+    <Panel
+        className={cls.descriptionPanel}
+        bordered={mediaQueryMaxWidth900px}
+        header={mediaQueryMaxWidth900px && 'Описание'}
+        collapsible={mediaQueryMaxWidth900px}
+        defaultExpanded={mediaQueryMinWidth600px}
+    >
+        {/* Форматируем описание, заменяя переносы строк на <br> */}
+        {description.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+                {line}
+                <br />
+            </React.Fragment>
+        ))}
+    </Panel>
+) : (
+    <Typography
+        tag="p"
+        variant="body-1"
+        className={cls.descriptionFullWidth}
+    >
+        {/* Форматируем описание, заменяя переносы строк на <br> */}
+        {description.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+                {line}
+                <br />
+            </React.Fragment>
+        ))}
+    </Typography>
+)}
                 <a href={locationLink}>Посмотреть на карте</a>
             </div>
 

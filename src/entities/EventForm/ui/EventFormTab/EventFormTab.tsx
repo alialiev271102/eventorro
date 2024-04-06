@@ -212,7 +212,7 @@ export const EventFormTab = () => {
                     <div>
                         {localDescription.length}
                         {' '}
-                        / 1000
+                        / 2200
                     </div>
                 </div>
 
