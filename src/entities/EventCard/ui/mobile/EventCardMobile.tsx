@@ -16,6 +16,7 @@ import {useQueries} from '@/shared/lib/hooks/useMediaQuery';
 import {EventCardProps} from '../../model/EventCard.type';
 import imageNotFound from '../assets/imageNotFound.jpeg';
 import cls from './EventCardMobile.module.less';
+import EventTicketUsers from '@/entities/EventForm/ui/EventTicketUsers/EventTicketUsers';
 
 export const EventCardMobile: FC<EventCardProps> = (props) => {
     const {event, withDrawer} = props;
@@ -26,7 +27,8 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
     const {isModerate} = event.eventInfo
     const {eventBookmarking} = eventStates;
     const {toggleEventSaveState} = eventFunctions;
-
+    
+    const [isEventTicketUsersOpen, setIsEventTicketUsersOpen] = useState<boolean>(false);
     const [isEventCardDrawerOpen, setIsEventCardDrawerOpen] = useState<boolean>(false);
 
     const {eventInfo, eventProperties, eventContent} = event;
@@ -76,6 +78,11 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                 isOpen={isEventCardDrawerOpen}
                 event={event}
             />
+            <EventTicketUsers
+                onClose={() => setIsEventTicketUsersOpen(false)}
+                isOpen={isEventTicketUsersOpen}
+                ticketUsers={event.eventInfo.ticketUsers}
+            />
             <div className={cls.cover}>
                 <ProgressiveImageLoader
                     src={eventContent.eventCardImage}
@@ -109,6 +116,21 @@ export const EventCardMobile: FC<EventCardProps> = (props) => {
                         className={cls.bookmark}
                     >
                         Настроить ивент
+                    </Button>
+                )}
+                {userState && withDrawer && (
+                    <Button
+                        style={{
+                            bottom: "20px"
+                        }}
+                        disabled={eventBookmarking}
+                        onClick={() => setIsEventTicketUsersOpen(true)}
+                        color="green"
+                        appearance="primary"
+                        size="xs"
+                        className={cls.bookmark}
+                    >
+                        Список Броней
                     </Button>
                 )}
 

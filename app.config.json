@@ -1,0 +1,10 @@
+{
+  "target": "server",
+  "poweredByHeader": false,
+  "compress": true,
+  "brotliCompress": true,
+  "generateEtags": true,
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

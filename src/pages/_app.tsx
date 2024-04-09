@@ -4,8 +4,9 @@ import '../app/styles/index.less';
 import type {AppProps} from 'next/app';
 import {Suspense, useEffect, useState} from 'react';
 import {ToastContainer} from 'react-toastify';
-import {CustomProvider, Footer, IconButton} from 'rsuite';
+import {CustomProvider, IconButton} from 'rsuite';
 import ruRu from 'rsuite/locales/ru_RU';
+import {useRouter} from 'next/router';
 
 import ErrorBoundary from '@/entities/ErrorBoundary/ErrorBoundary';
 import {AuthorizationContextProvider} from '@/shared/Providers/AuthorizationProvider';
@@ -14,10 +15,19 @@ import {Navbar} from '@/widgets/Navbar';
 
 import 'react-toastify/dist/ReactToastify.css';
 import {ArrowUpIcon} from "@heroicons/react/24/outline";
+import { Logo } from '@/widgets/Navbar/additionUI';
+import Footer from '@/widgets/Footer/Footer';
+
+
+
 
 export default function App({Component, pageProps}: AppProps) {
 
     const [client, setClient] = useState<boolean>(false);
+    const {push} = useRouter();
+    const toDocs = async () => {
+        await push('/documents')
+    }
 
     useEffect(() => {
         setClient(true)
@@ -49,7 +59,16 @@ export default function App({Component, pageProps}: AppProps) {
                                         zIndex: '1200'
                                     }}>
                         </IconButton>
-                        <Footer></Footer>
+                        <div style={{ position: 'relative', zIndex: '200' }}> {/* z-index для футера */}
+                        <Footer toDocs={toDocs} />
+                          {/*  <div style={{ textAlign: 'center',
+                            paddingTop: '10px',
+                            paddingBottom: '20px',
+                            backgroundColor: 'white',
+                            }}>
+                                <p>© Eventorro.com{new Date().getFullYear()}</p>
+                            </div> */}
+                        </div>
                     </CustomProvider>
                     <ToastContainer/>
                 </FilterContextProvider>

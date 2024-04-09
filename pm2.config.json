@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "eventorro",
+      "script": "npm start --omit=dev",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

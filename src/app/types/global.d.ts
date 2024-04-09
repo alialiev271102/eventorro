@@ -7,7 +7,7 @@ type EventDate = {date_time: string};
 export interface ticketUserFromBackend {
     id: number;
     event: string;
-    count: number;
+    ticket_count: number;
     phone: string;
     name: string;
     last_name: string;
