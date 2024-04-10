@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { DeepRequired, FieldErrorsImpl, GlobalError } from 'react-hook-form';
 
-import { Event, EventInfo, EventProperties } from '@/app/types/global';
+import { Event, EventInfo, EventProperties, ticketUser } from '@/app/types/global';
 
 export interface EventFormBannerProps {
     className?: string;
@@ -45,6 +45,12 @@ export interface EventFormDrawerProps {
     onClose: () => void;
     isOpen: boolean;
     event: Event;
+}
+
+export interface EventFormTicketUsersProps {
+    onClose: () => void;
+    isOpen: boolean;
+    ticketUsers: ticketUser[];
 }
 
 export interface EventFormCarouselProps {

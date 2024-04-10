@@ -42,12 +42,13 @@ export const Event: FC<EventProps> = ({ event }) => {
                         imageLink={eventCardImage}
                     />
                 )
-                : (
+                :( poster !== "https://back.eventorro.comImage Not Found"
+                ?(
                     <HorizontalPoster
                         alt={eventName}
                         imageLink={poster}
                     />
-                )}
+                ) : (''))}
             <Layout>
                 {authorData === null || authorDataLoading
                     ? <OrganizationLoader />
@@ -62,7 +63,7 @@ export const Event: FC<EventProps> = ({ event }) => {
                     eventInfo={eventInfo}
                     eventProperties={eventProperties}
                 />
-                {images.length && <CarouselImages images={images} />}
+                {images.length ? (<CarouselImages images={images} />):('')}
                 {video && <YoutubeFrame link={video} />}
             </Layout>
         </div>

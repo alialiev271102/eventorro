@@ -1,5 +1,5 @@
 import {
-    BookmarkIcon, CalendarIcon, Cog6ToothIcon, HashtagIcon, MapPinIcon,
+    BookmarkIcon, CalendarIcon, Cog6ToothIcon, ListBulletIcon, HashtagIcon, MapPinIcon,
 } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import {
@@ -18,6 +18,7 @@ import { useEvent } from '@/shared/lib/hooks/useEvent';
 import { EventCardProps } from '../../model/EventCard.type';
 import imageNotFound from '../assets/imageNotFound.jpeg';
 import cls from './EventCardDesktop.module.less';
+import EventTicketUsers from '@/entities/EventForm/ui/EventTicketUsers/EventTicketUsers';
 
 export const EventCardDesktop: FC<EventCardProps> = (props) => {
     const { event, withDrawer } = props;
@@ -26,6 +27,7 @@ export const EventCardDesktop: FC<EventCardProps> = (props) => {
     const { push } = useRouter();
     const { eventCategories, eventDate, eventPrice } = useDataNormalization();
     const [isEventCardDrawerOpen, setIsEventCardDrawerOpen] = useState<boolean>(false);
+    const [isEventTicketUsersOpen, setIsEventTicketUsersOpen] = useState<boolean>(false);
 
     const { userState } = authorizationStates;
     const { eventInfo, eventProperties, eventContent } = event;
@@ -55,6 +57,11 @@ export const EventCardDesktop: FC<EventCardProps> = (props) => {
                 isOpen={isEventCardDrawerOpen}
                 event={event}
             />
+            <EventTicketUsers
+                onClose={() => setIsEventTicketUsersOpen(false)}
+                isOpen={isEventTicketUsersOpen}
+                ticketUsers={event.eventInfo.ticketUsers}
+            />
             <div className={cls.imageBlock}>
                 <ProgressiveImageLoader
                     src={eventContent.eventCardImage}
@@ -83,6 +90,19 @@ export const EventCardDesktop: FC<EventCardProps> = (props) => {
                         onClick={() => setIsEventCardDrawerOpen(true)}
                     >
                         <Cog6ToothIcon className={cls.bookmarkIcon} />
+                    </button>
+                )}
+                 {userState && withDrawer && (
+                    <button
+                        type="button"
+                        style={{
+                            top: "45px"
+                        }}
+                        className={cls.saveToBookmarkBlock}
+                        disabled={isEventTicketUsersOpen}
+                        onClick={() => setIsEventTicketUsersOpen(true)}
+                    >
+                        <ListBulletIcon className={cls.bookmarkIcon} />
                     </button>
                 )}
             </div>

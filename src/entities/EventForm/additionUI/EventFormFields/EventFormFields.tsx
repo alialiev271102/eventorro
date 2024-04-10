@@ -118,7 +118,7 @@ export const EventFormFields: FC<EventFormFieldsProps> = (props) => {
                 <div>
                     {localDescription.length}
                     {' '}
-                    / 1000
+                    / 2200
                 </div>
             </div>
 

@@ -31,7 +31,7 @@ export const eventModelSerializer = (eventDataFromBack: EventFromBackend): Event
     const mappedTicketUser: ticketUserInterface[] = ticketUsers?.map((ticketUserMapped: ticketUserFromBackend) => ({
         id: ticketUserMapped.id,
         event: ticketUserMapped.event,
-        count: ticketUserMapped.count,
+        count: ticketUserMapped.ticket_count,
         phone: ticketUserMapped.phone,
         name: ticketUserMapped.name,
         lastName: ticketUserMapped.last_name,

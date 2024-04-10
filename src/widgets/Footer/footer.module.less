@@ -1,0 +1,58 @@
+/* Footer.module.less */
+.footer {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    padding: 20px 4em 10px;
+    display: flex;
+    background-color: #ffffff;
+    box-shadow: rgba(60, 64, 67, 0.15) 0px -1px 3px 1px, rgba(60, 64, 67, 0.3) 0px 1px 2px 0px;
+
+    div {
+        flex-basis: 33%;
+
+        &:nth-child(2) {
+            font-size: 17px;
+            color: #575757;
+        }
+
+        a {
+            display: block;
+            color: #575757;
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+    }
+
+    /* Стили для иконок социальных сетей */
+.social-icons {
+    /* Стили для контейнера иконок */
+    display: flex; /* Установка контейнера иконок в режим flex */
+    align-items: center; /* Выравнивание иконок по вертикали */
+}
+
+.social-icons a {
+    /* Стили для ссылок с иконками */
+    margin-right: 10px; /* Отступ между иконками */
+    display: inline-block; /* Отображение ссылок как блочных элементов внутри flex-контейнера */
+}
+
+
+    @media screen and (max-width: 768px) {
+        div {
+            flex-basis: 100%; /* Изменить ширину каждого блока на 100% */
+            text-align: center; /* Выравнивание текста по центру */
+        }
+        flex-direction: column; /* Изменить направление контейнера на колонку */
+    }
+}

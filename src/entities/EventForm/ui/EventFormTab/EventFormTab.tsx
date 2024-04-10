@@ -91,8 +91,8 @@ export const EventFormTab = () => {
     };
 
     const onCreateNewEvent = (data: EventFormFieldsType) => {
-        if (poster === null || banner === null) {
-            toast.error('Пожалуйста добавьте постер и баннер', {
+        if (poster === null) {
+            toast.error('Пожалуйста добавьте постер', {
                 autoClose: 1500,
             });
             return;
@@ -135,7 +135,7 @@ export const EventFormTab = () => {
             image3: carouselImages[2]?.file && carouselImages[2].file,
             image4: carouselImages[3]?.file && carouselImages[3].file,
             image5: carouselImages[4]?.file && carouselImages[4].file,
-            poster: banner,
+            poster: banner || null,
             event_card_image: poster,
         };
 
@@ -212,7 +212,7 @@ export const EventFormTab = () => {
                     <div>
                         {localDescription.length}
                         {' '}
-                        / 1000
+                        / 2200
                     </div>
                 </div>
 
@@ -402,20 +402,7 @@ export const EventFormTab = () => {
                             marginRight: '10px',
                         }}
                     />
-                    Я согласен с правилами использования
-                </Typography>
-                <Typography
-                    className={cls.eventFormCheckBox}
-                    variant="body-2"
-                >
-                    <input
-                        type="checkbox"
-                        required
-                        style={{
-                            marginRight: '10px',
-                        }}
-                    />
-                    Я согласен с отказом от ответственности
+                    Я согласен с <a href="/">офертой</a> для Организаторов.
                 </Typography>
                 <Button appearance="primary" type="submit">
                     Создать
