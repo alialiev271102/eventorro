@@ -247,7 +247,7 @@ export const EventInformation: FC<EventInformationProps> = (props) => {
                                 className={cls.informationPanelButton}
                                 onClick={onUserRegisterhandler}
                             >
-                                Забронировать
+                                Забронировать 
                                 <TicketIcon width={18} height={18}/>
                             </Button>) : <div></div>
                     }
