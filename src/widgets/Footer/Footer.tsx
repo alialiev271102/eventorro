@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ toDocs }) => {
                 {/* Контейнер для иконок */}
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <a href="https://www.instagram.com/eventorro/">
-                        <img src={'instagramIcon.png'} alt="Instagram" />
+                        <img src={'instagramIcon.png?${Math.random()}'} alt="Instagram" />
                     </a>
                     <a href="https://t.me/eventorro_bishkek">
                         <img src={"telegramIcon.png"} alt="Telegram" />
