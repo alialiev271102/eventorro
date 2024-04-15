@@ -52,7 +52,7 @@ export interface UseEventReturn {
         updateEvent: (id: number, data: Partial<CreateEventProps>) => Promise<void>;
         getEventById: (eventId: number) => Promise<void>;
         toggleRegisterToEvent: (eventId: number, setIsRegistered: Dispatch<SetStateAction<boolean>>) => Promise<void>;
-        toggleRegisterToEventWithCount: (id: number,count: number,setIsRegistered: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+        toggleRegisterToEventWithCount: (id: number,ticket_count: number,setIsRegistered: Dispatch<SetStateAction<boolean>>) => Promise<void>;
         toggleEventSaveState: (id: number) => Promise<void>;
         getEventAuthorDateByEmail: (email: string) => Promise<void>;
     };
